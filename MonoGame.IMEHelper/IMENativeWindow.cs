@@ -261,6 +261,7 @@ namespace MonoGame.IMEHelper
                     break;
                 case IMM.ImeEndComposition:
                     IMEEndComposition(msg.LParam.ToInt32());
+                    if (!_showIMEWin) return;
                     break;
                 case IMM.Char:
                     CharEvent(msg.WParam.ToInt32());
