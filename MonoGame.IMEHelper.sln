@@ -5,16 +5,31 @@ VisualStudioVersion = 15.0.28307.705
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonoGame.IMEHelper", "MonoGame.IMEHelper\MonoGame.IMEHelper.csproj", "{942B5C2D-801A-4703-B0BB-DD312A068612}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonoGame.IMEHelper.Test", "MonoGame.IMEHelper.Test\MonoGame.IMEHelper.Test.csproj", "{735A5BFD-9441-4FC3-BA13-2924E43A0B15}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
+		Debug|x86 = Debug|x86
 		Release|Any CPU = Release|Any CPU
+		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{942B5C2D-801A-4703-B0BB-DD312A068612}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{942B5C2D-801A-4703-B0BB-DD312A068612}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{942B5C2D-801A-4703-B0BB-DD312A068612}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{942B5C2D-801A-4703-B0BB-DD312A068612}.Debug|x86.Build.0 = Debug|Any CPU
 		{942B5C2D-801A-4703-B0BB-DD312A068612}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{942B5C2D-801A-4703-B0BB-DD312A068612}.Release|Any CPU.Build.0 = Release|Any CPU
+		{942B5C2D-801A-4703-B0BB-DD312A068612}.Release|x86.ActiveCfg = Release|Any CPU
+		{942B5C2D-801A-4703-B0BB-DD312A068612}.Release|x86.Build.0 = Release|Any CPU
+		{735A5BFD-9441-4FC3-BA13-2924E43A0B15}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{735A5BFD-9441-4FC3-BA13-2924E43A0B15}.Debug|Any CPU.Build.0 = Debug|x86
+		{735A5BFD-9441-4FC3-BA13-2924E43A0B15}.Debug|x86.ActiveCfg = Debug|x86
+		{735A5BFD-9441-4FC3-BA13-2924E43A0B15}.Debug|x86.Build.0 = Debug|x86
+		{735A5BFD-9441-4FC3-BA13-2924E43A0B15}.Release|Any CPU.ActiveCfg = Release|x86
+		{735A5BFD-9441-4FC3-BA13-2924E43A0B15}.Release|x86.ActiveCfg = Release|x86
+		{735A5BFD-9441-4FC3-BA13-2924E43A0B15}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
