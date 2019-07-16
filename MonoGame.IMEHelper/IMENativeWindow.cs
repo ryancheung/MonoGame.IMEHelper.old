@@ -197,7 +197,6 @@ namespace MonoGame.IMEHelper
             this._resreadclause = new IMMCompositionString(IMM.GCSResultReadClause);
             this._showIMEWin = showDefaultIMEWindow;
             AssignHandle(handle);
-            CharMessageFilter.AddFilter();
         }
 
         /// <summary>
@@ -206,7 +205,15 @@ namespace MonoGame.IMEHelper
         public void EnableIME()
         {
             IsEnabled = true;
-            IMM.ImmAssociateContext(Handle, _context);
+
+            if (_context != IntPtr.Zero)
+            {
+                IMM.ImmAssociateContext(Handle, _context);
+                return;
+            }
+
+            // This fix the bug that _context is 0 on fullscreen mode.
+            ImeContext.Enable(Handle);
         }
 
         /// <summary>
@@ -215,7 +222,9 @@ namespace MonoGame.IMEHelper
         public void DisableIME()
         {
             IsEnabled = false;
+
             IMM.ImmAssociateContext(Handle, IntPtr.Zero);
+            IMM.ImmReleaseContext(Handle, _context);
         }
 
         /// <summary>

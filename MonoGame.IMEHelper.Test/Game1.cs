@@ -23,6 +23,10 @@ namespace MonoGame.IMEHelper.Test
         Texture2D whitePixel;
         string inputContent = string.Empty;
 
+        const int UnicodeSimplifiedChineseMin = 0x4E00;
+        const int UnicodeSimplifiedChineseMax = 0x9FA5;
+        const string DefaultChar = "?";
+
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -52,7 +56,10 @@ namespace MonoGame.IMEHelper.Test
                         inputContent = "";
                         break;
                     default:
-                        inputContent += e.Result;
+                        if (e.Result > UnicodeSimplifiedChineseMax)
+                            inputContent += DefaultChar;
+                        else
+                            inputContent += e.Result;
                         break;
                 }
             };
@@ -142,6 +149,9 @@ namespace MonoGame.IMEHelper.Test
                     case CompositionAttributes.TargetNotConverted: compColor = Color.SkyBlue; break;
                 }
 
+                if (val[0] > UnicodeSimplifiedChineseMax)
+                    val = DefaultChar;
+
                 spriteBatch.DrawString(font1, val, drawPos, compColor);
 
                 measStr = font1.MeasureString(val);
@@ -155,6 +165,9 @@ namespace MonoGame.IMEHelper.Test
                 i < Math.Min(imeHandler.CandidatesPageStart + imeHandler.CandidatesPageSize, imeHandler.Candidates.Length);
                 i++)
             {
+                if (imeHandler.Candidates[i][0] > UnicodeSimplifiedChineseMax)
+                    imeHandler.Candidates[i] = DefaultChar;
+
                 spriteBatch.DrawString(font1,
                     String.Format("{0}.{1}", i + 1 - imeHandler.CandidatesPageStart, imeHandler.Candidates[i]),
                     new Vector2(15 + len.X, 50 + (i - imeHandler.CandidatesPageStart) * 20),

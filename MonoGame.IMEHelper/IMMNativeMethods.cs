@@ -62,6 +62,9 @@ namespace MonoGame.IMEHelper
         [DllImport("imm32.dll", SetLastError = true)]
         public static extern IntPtr ImmAssociateContext(IntPtr hWnd, IntPtr hIMC);
 
+        [DllImport("imm32.dll", SetLastError = true)]
+        public static extern IntPtr ImmReleaseContext(IntPtr hWnd, IntPtr hIMC);
+
         [DllImport("imm32.dll", CharSet = CharSet.Unicode)]
         public static extern uint ImmGetCandidateList(IntPtr hIMC, uint deIndex, IntPtr candidateList, uint dwBufLen);
 

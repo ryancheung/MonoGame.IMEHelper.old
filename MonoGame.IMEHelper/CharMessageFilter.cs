@@ -16,6 +16,7 @@ namespace MonoGame.IMEHelper
             Added = true;
         }
 
+        // We don't have to translate to character message now. (Windows 10 tested, not sure for Windows 7)
         private class Filter : IMessageFilter
         {
             public bool PreFilterMessage(ref Message m)
@@ -23,16 +24,16 @@ namespace MonoGame.IMEHelper
                 switch (m.Msg)
                 {
                     case IMM.KeyDown:
-                        // We don't have to translate to character message now. (Windows 10 tested, not sure for Windows 7)
-                        //IntPtr intPtr = Marshal.AllocHGlobal(Marshal.SizeOf(m));
-                        //Marshal.StructureToPtr(m, intPtr, true);
-                        //IMM.TranslateMessage(intPtr);
+                        IntPtr intPtr = Marshal.AllocHGlobal(Marshal.SizeOf(m));
+                        Marshal.StructureToPtr(m, intPtr, true);
+                        IMM.TranslateMessage(intPtr);
                         return false;
                     case 0x020A:
                         // Mouse wheel is not correct if the IME helper is used, thus it is needed to grab the value here.
                         MouseWheel += (int)(short)((uint)(int)m.WParam >> 16);
                         return false;
                 }
+
                 return false;
             }
         }
