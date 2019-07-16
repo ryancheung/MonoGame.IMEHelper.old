@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.705
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonoGame.IMEHelper", "MonoGame.IMEHelper\MonoGame.IMEHelper.csproj", "{942B5C2D-801A-4703-B0BB-DD312A068612}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{942B5C2D-801A-4703-B0BB-DD312A068612}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{942B5C2D-801A-4703-B0BB-DD312A068612}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{942B5C2D-801A-4703-B0BB-DD312A068612}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{942B5C2D-801A-4703-B0BB-DD312A068612}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C466F7D7-2C9D-4CB5-989B-477C763FE501}
+	EndGlobalSection
+EndGlobal
