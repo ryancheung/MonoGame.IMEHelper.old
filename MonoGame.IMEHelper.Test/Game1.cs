@@ -31,6 +31,14 @@ namespace MonoGame.IMEHelper.Test
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+
+            graphics.PreparingDeviceSettings += Graphics_PreparingDeviceSettings;
+        }
+
+        private void Graphics_PreparingDeviceSettings(object sender, PreparingDeviceSettingsEventArgs e)
+        {
+            e.GraphicsDeviceInformation.PresentationParameters.HardwareModeSwitch = false;
+            e.GraphicsDeviceInformation.PresentationParameters.IsFullScreen = true;
         }
 
         /// <summary>
@@ -41,7 +49,7 @@ namespace MonoGame.IMEHelper.Test
         /// </summary>
         protected override void Initialize()
         {
-            imeHandler = new IMEHandler(this);
+            imeHandler = new IMEHandler(this, true);
 
             imeHandler.ResultReceived += (s, e) =>
             {
