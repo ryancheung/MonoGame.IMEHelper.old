@@ -33,6 +33,24 @@ namespace MonoGame.IMEHelper.Test
             Content.RootDirectory = "Content";
 
             graphics.PreparingDeviceSettings += Graphics_PreparingDeviceSettings;
+
+            Activated += (o, e) =>
+            {
+                var mode = DisplayModeHelper.DisplayModes.SupportedDisplayModes["1366x768"];
+                DisplayModeHelper.ResolutionHelper.ChangeResolution(ref mode);
+            };
+
+            Deactivated += (o,e) =>
+            {
+                var mode = DisplayModeHelper.DisplayModes.SupportedDisplayModes["1920x1080"];
+                DisplayModeHelper.ResolutionHelper.ChangeResolution(ref mode);
+            };
+
+            Exiting += (o,e) =>
+            {
+                var mode = DisplayModeHelper.DisplayModes.SupportedDisplayModes["1366x768"];
+                DisplayModeHelper.ResolutionHelper.ChangeResolution(ref mode);
+            };
         }
 
         private void Graphics_PreparingDeviceSettings(object sender, PreparingDeviceSettingsEventArgs e)
