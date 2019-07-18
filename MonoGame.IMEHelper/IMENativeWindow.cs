@@ -206,9 +206,11 @@ namespace MonoGame.IMEHelper
         {
             IsEnabled = true;
 
+            _context = IMM.ImmGetContext(Handle);
             if (_context != IntPtr.Zero)
             {
                 IMM.ImmAssociateContext(Handle, _context);
+                IMM.ImmReleaseContext(Handle, _context);
                 return;
             }
 
@@ -224,7 +226,6 @@ namespace MonoGame.IMEHelper
             IsEnabled = false;
 
             IMM.ImmAssociateContext(Handle, IntPtr.Zero);
-            IMM.ImmReleaseContext(Handle, _context);
         }
 
         /// <summary>
@@ -244,7 +245,13 @@ namespace MonoGame.IMEHelper
             switch (msg.Msg)
             {
                 case IMM.ImeSetContext:
-                    IMESetContext(ref msg);
+                    if (msg.WParam.ToInt32() == 1)
+                    {
+                        if (IsEnabled)
+                            EnableIME();
+                        if (!_showIMEWin)
+                            msg.LParam = (IntPtr)0;
+                    }
                     break;
                 case IMM.InputLanguageChange:
                     return;
@@ -256,10 +263,14 @@ namespace MonoGame.IMEHelper
                     IMEStartComposion(msg.LParam.ToInt32());
                     return;
                 case IMM.ImeComposition:
+                    IMESetContextForAll();
                     IMEComposition(msg.LParam.ToInt32());
+                    IMM.ImmReleaseContext(Handle, _context);
                     break;
                 case IMM.ImeEndComposition:
+                    IMESetContextForAll();
                     IMEEndComposition(msg.LParam.ToInt32());
+                    IMM.ImmReleaseContext(Handle, _context);
                     if (!_showIMEWin) return;
                     break;
                 case IMM.Char:
@@ -289,31 +300,21 @@ namespace MonoGame.IMEHelper
 
         #region IME Message Handlers
 
-        private void IMESetContext(ref Message msg)
+        private void IMESetContextForAll()
         {
-            if (msg.WParam.ToInt32() == 1)
-            {
-                IntPtr ptr = IMM.ImmGetContext(Handle);
-                if (_context == IntPtr.Zero)
-                    _context = ptr;
-                else if (ptr == IntPtr.Zero && IsEnabled)
-                    EnableIME();
+            _context = IMM.ImmGetContext(Handle);
 
-                _compcurpos.IMEHandle = _context;
-                _compstr.IMEHandle = _context;
-                _compclause.IMEHandle = _context;
-                _compattr.IMEHandle = _context;
-                _compread.IMEHandle = _context;
-                _compreadclause.IMEHandle = _context;
-                _compreadattr.IMEHandle = _context;
-                _resstr.IMEHandle = _context;
-                _resclause.IMEHandle = _context;
-                _resread.IMEHandle = _context;
-                _resreadclause.IMEHandle = _context;
-
-                if (!_showIMEWin)
-                    msg.LParam = (IntPtr)0;
-            }
+            _compcurpos.IMEHandle = _context;
+            _compstr.IMEHandle = _context;
+            _compclause.IMEHandle = _context;
+            _compattr.IMEHandle = _context;
+            _compread.IMEHandle = _context;
+            _compreadclause.IMEHandle = _context;
+            _compreadattr.IMEHandle = _context;
+            _resstr.IMEHandle = _context;
+            _resclause.IMEHandle = _context;
+            _resread.IMEHandle = _context;
+            _resreadclause.IMEHandle = _context;
         }
 
         private void IMENotify(int WParam)
@@ -336,6 +337,8 @@ namespace MonoGame.IMEHelper
 
         private void IMEChangeCandidate()
         {
+            _context = IMM.ImmGetContext(Handle);
+
             uint length = IMM.ImmGetCandidateList(_context, 0, IntPtr.Zero, 0);
             if (length > 0)
             {
@@ -364,6 +367,8 @@ namespace MonoGame.IMEHelper
 
                 Marshal.FreeHGlobal(pointer);
             }
+
+            IMM.ImmReleaseContext(Handle, _context);
         }
 
         private void IMECloseCandidate()
