@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace MonoGame.IMEHelper.Test
+namespace MonoGame.IMEHelper.WindowsDX.Test
 {
 #if WINDOWS || LINUX
     /// <summary>

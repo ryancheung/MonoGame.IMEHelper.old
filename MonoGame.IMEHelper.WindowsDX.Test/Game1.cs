@@ -7,7 +7,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Threading;
 
-namespace MonoGame.IMEHelper.Test
+namespace MonoGame.IMEHelper.WindowsDX.Test
 {
     /// <summary>
     /// This is the main type for your game.
