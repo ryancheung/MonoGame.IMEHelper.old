@@ -7,7 +7,7 @@ namespace MonoGame.IMEHelper
     /// <summary>
     /// Native window class that handles IME.
     /// </summary>
-    public sealed class IMENativeWindow : NativeWindow, IDisposable
+    internal sealed class IMENativeWindow : NativeWindow, IDisposable
     {
         private WinFormsIMEHandler _imeHandler;
 
@@ -117,7 +117,7 @@ namespace MonoGame.IMEHelper
         /// </summary>
         /// <param name="handle">Handle of the window</param>
         /// <param name="showDefaultIMEWindow">True if you want to display the default IME window</param>
-        public IMENativeWindow(WinFormsIMEHandler imeHandler, IntPtr handle, bool showDefaultIMEWindow = false)
+        internal IMENativeWindow(WinFormsIMEHandler imeHandler, IntPtr handle, bool showDefaultIMEWindow = false)
         {
             this._imeHandler = imeHandler; 
 
