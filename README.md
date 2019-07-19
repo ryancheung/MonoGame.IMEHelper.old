@@ -1,4 +1,11 @@
-## MonoGame IME Helper for desktop including SDL2 and WindowsDX and mobile platforms
+## MonoGame IME Helper for desktop and mobile platforms
+
+### Targeted platforms at the moment
+
+- WindowsDX(Desktop)
+- SDL2(Desktop)
+- Android
+- iOS
 
 ## License
 
