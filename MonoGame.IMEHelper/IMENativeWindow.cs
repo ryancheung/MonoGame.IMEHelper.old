@@ -5,61 +5,11 @@ using System.Windows.Forms;
 namespace MonoGame.IMEHelper
 {
     /// <summary>
-    /// Composition Character Attributes
-    /// </summary>
-    public enum CompositionAttributes
-    {
-        /// <summary>
-        /// Character being entered by the user.
-        /// The IME has yet to convert this character.
-        /// </summary>
-        Input = 0x00,
-        /// <summary>
-        /// Character selected by the user and then converted by the IME.
-        /// </summary>
-        TargetConverted = 0x01,
-        /// <summary>
-        /// Character that the IME has already converted.
-        /// </summary>
-        Converted = 0x02,
-        /// <summary>
-        /// Character being converted. The user has selected this character
-        /// but the IME has not yet converted it.
-        /// </summary>
-        TargetNotConverted = 0x03,
-        /// <summary>
-        /// An error character that the IME cannot convert. For example,
-        /// the IME cannot put together some consonants.
-        /// </summary>
-        InputError = 0x04,
-        /// <summary>
-        /// Characters that the IME will no longer convert.
-        /// </summary>
-        FixedConverted = 0x05,
-    }
-
-    /// <summary>
-    /// Special event arguemnt class stores new character that IME sends in.
-    /// </summary>
-    public class IMEResultEventArgs : EventArgs
-    {
-
-        internal IMEResultEventArgs(char result)
-        {
-            this.Result = result;
-        }
-
-        /// <summary>
-        /// The result character
-        /// </summary>
-        public char Result { get; private set; }
-    }
-
-    /// <summary>
     /// Native window class that handles IME.
     /// </summary>
     public sealed class IMENativeWindow : NativeWindow, IDisposable
     {
+        private WinFormsIMEHandler _imeHandler;
 
         private IMMCompositionString
             _compstr, _compclause, _compattr,
@@ -67,7 +17,9 @@ namespace MonoGame.IMEHelper
             _resstr, _resclause,
             _resread, _resreadclause;
         private IMMCompositionInt _compcurpos;
+
         private bool _disposed, _showIMEWin;
+
         private IntPtr _context;
 
         /// <summary>
@@ -161,27 +113,14 @@ namespace MonoGame.IMEHelper
         }
 
         /// <summary>
-        /// Called when the candidates updated
-        /// </summary>
-        public event EventHandler CandidatesReceived;
-
-        /// <summary>
-        /// Called when the composition updated
-        /// </summary>
-        public event EventHandler CompositionReceived;
-
-        /// <summary>
-        /// Called when a new result character is coming
-        /// </summary>
-        public event EventHandler<IMEResultEventArgs> ResultReceived;
-
-        /// <summary>
         /// Constructor, must be called when the window create.
         /// </summary>
         /// <param name="handle">Handle of the window</param>
         /// <param name="showDefaultIMEWindow">True if you want to display the default IME window</param>
-        public IMENativeWindow(IntPtr handle, bool showDefaultIMEWindow = false)
+        public IMENativeWindow(WinFormsIMEHandler imeHandler, IntPtr handle, bool showDefaultIMEWindow = false)
         {
+            this._imeHandler = imeHandler; 
+
             this._context = IntPtr.Zero;
             this.Candidates = new string[0];
             this._compcurpos = new IMMCompositionInt(IMM.GCSCursorPos);
@@ -196,6 +135,7 @@ namespace MonoGame.IMEHelper
             this._resread = new IMMCompositionString(IMM.GCSResultReadStr);
             this._resreadclause = new IMMCompositionString(IMM.GCSResultReadClause);
             this._showIMEWin = showDefaultIMEWindow;
+
             AssignHandle(handle);
         }
 
@@ -359,8 +299,12 @@ namespace MonoGame.IMEHelper
                         Candidates[i] = Marshal.PtrToStringUni((IntPtr)(pointer.ToInt32() + sOffset));
                     }
 
-                    if (CandidatesReceived != null)
-                        CandidatesReceived(this, EventArgs.Empty);
+                    _imeHandler.OnTextComposition(CompositionString, CompositionCursorPos, new CandidateList {
+                        Candidates = Candidates,
+                        CandidatesPageStart = CandidatesPageStart,
+                        CandidatesPageSize = CandidatesPageSize,
+                        CandidatesSelection = CandidatesSelection
+                    });
                 }
                 else
                     IMECloseCandidate();
@@ -376,8 +320,7 @@ namespace MonoGame.IMEHelper
             CandidatesSelection = CandidatesPageStart = CandidatesPageSize = 0;
             Candidates = new string[0];
 
-            if (CandidatesReceived != null)
-                CandidatesReceived(this, EventArgs.Empty);
+            _imeHandler.OnTextComposition(CompositionString, CompositionCursorPos, null);
         }
 
         private void IMEStartComposion(int lParam)
@@ -385,8 +328,7 @@ namespace MonoGame.IMEHelper
             ClearComposition();
             ClearResult();
 
-            if (CompositionReceived != null)
-                CompositionReceived(this, EventArgs.Empty);
+            _imeHandler.OnTextComposition(string.Empty, 0);
         }
 
         private void IMEComposition(int lParam)
@@ -400,8 +342,7 @@ namespace MonoGame.IMEHelper
                 _compreadattr.Update();
                 _compcurpos.Update();
 
-                if (CompositionReceived != null)
-                    CompositionReceived(this, EventArgs.Empty);
+                _imeHandler.OnTextComposition(CompositionString, CompositionCursorPos);
             }
         }
 
@@ -414,16 +355,14 @@ namespace MonoGame.IMEHelper
                 _resclause.Update();
                 _resread.Update();
                 _resreadclause.Update();
-            }
 
-            if (CompositionReceived != null)
-                CompositionReceived(this, EventArgs.Empty);
+                _imeHandler.OnTextComposition(string.Empty, 0);
+            }
         }
 
         private void CharEvent(int wParam)
         {
-            if (ResultReceived != null)
-                ResultReceived(this, new IMEResultEventArgs((char)wParam));
+            _imeHandler.OnTextInput((char)wParam);
 
             if (IsEnabled)
                 IMECloseCandidate();
