@@ -77,6 +77,9 @@ namespace MonoGame.IMEHelper
         [DllImport("user32.dll", CallingConvention = CallingConvention.StdCall, CharSet = CharSet.Auto)]
         public static extern bool TranslateMessage(IntPtr message);
 
+        [DllImport("user32.dll")]
+        public static extern short VkKeyScanEx(char ch, IntPtr dwhkl);
+
         [StructLayoutAttribute(LayoutKind.Sequential)]
         public struct CandidateList
         {
