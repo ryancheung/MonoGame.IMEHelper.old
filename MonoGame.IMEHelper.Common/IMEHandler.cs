@@ -97,6 +97,13 @@ namespace MonoGame.IMEHelper
         public abstract void StopTextComposition();
 
         /// <summary>
+        /// Use this function to set the rectangle used to type Unicode text inputs if IME supported.
+        /// In SDL2, this method call gives the OS a hint for where to show the candidate text list,
+        /// since the OS doesn't know where you want to draw the text you received via SDL_TEXTEDITING event.
+        /// </summary>
+        public virtual void SetTextInputRect(ref Rectangle rect) { }
+
+        /// <summary>
         /// Array of the candidates
         /// </summary>
         public virtual string[] Candidates { get { return null; } }
@@ -166,7 +173,7 @@ namespace MonoGame.IMEHelper
         /// </summary>
         /// <param name="index">Character Index</param>
         /// <returns>Composition Attribute</returns>
-        public virtual CompositionAttributes GetCompositionAttr(int compStringindex)
+        public virtual CompositionAttributes GetCompositionAttr(int charIndex)
         {
             return CompositionAttributes.Input;
         }
@@ -176,7 +183,7 @@ namespace MonoGame.IMEHelper
         /// </summary>
         /// <param name="index">Character Index</param>
         /// <returns>Composition Attribute</returns>
-        public virtual CompositionAttributes GetCompositionReadAttr(int compStringindex)
+        public virtual CompositionAttributes GetCompositionReadAttr(int charIndex)
         {
             return CompositionAttributes.Input;
         }
