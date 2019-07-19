@@ -3,7 +3,6 @@ using System;
 
 namespace MonoGame.IMEHelper
 {
-
     /// <summary>
     /// Integrate IME to DesktopGL(SDL2) platform.
     /// </summary>
@@ -20,9 +19,9 @@ namespace MonoGame.IMEHelper
             GameInstance.Window.TextInput += Window_TextInput;
         }
 
-        private void Window_TextInput(object sender, TextInputEventArgs e)
+        private void Window_TextInput(object sender, Microsoft.Xna.Framework.TextInputEventArgs e)
         {
-            OnTextInput(e);
+            OnTextInput(TextInputEventArgs.FromSDLEvent(e));
         }
 
         public override void StartTextComposition()

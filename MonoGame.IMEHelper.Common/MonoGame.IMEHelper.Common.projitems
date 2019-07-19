@@ -14,6 +14,7 @@
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)IMEHandler.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)TextCompositionEventArgs.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TextInputEventArgs.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="$(MSBuildThisFileDirectory)Content\simsun.ttf">
