@@ -9,8 +9,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonoGame.IMEHelper.Test", "
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "MonoGame.IMEHelper.Common", "MonoGame.IMEHelper.Common\MonoGame.IMEHelper.Common.shproj", "{A0CDBD0E-3A41-42B7-9425-A838BC2C7383}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonoGame.IMEHelper.DesktopGL", "MonoGame.IMEHelper.DesktopGL\MonoGame.IMEHelper.DesktopGL.csproj", "{93E2B4DA-6417-4290-B8DA-874BC6D43C36}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		MonoGame.IMEHelper.Common\MonoGame.IMEHelper.Common.projitems*{93e2b4da-6417-4290-b8da-874bc6d43c36}*SharedItemsImports = 4
 		MonoGame.IMEHelper.Common\MonoGame.IMEHelper.Common.projitems*{942b5c2d-801a-4703-b0bb-dd312a068612}*SharedItemsImports = 4
 		MonoGame.IMEHelper.Common\MonoGame.IMEHelper.Common.projitems*{a0cdbd0e-3a41-42b7-9425-a838bc2c7383}*SharedItemsImports = 13
 	EndGlobalSection
@@ -36,6 +39,14 @@ Global
 		{735A5BFD-9441-4FC3-BA13-2924E43A0B15}.Release|Any CPU.ActiveCfg = Release|x86
 		{735A5BFD-9441-4FC3-BA13-2924E43A0B15}.Release|x86.ActiveCfg = Release|x86
 		{735A5BFD-9441-4FC3-BA13-2924E43A0B15}.Release|x86.Build.0 = Release|x86
+		{93E2B4DA-6417-4290-B8DA-874BC6D43C36}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{93E2B4DA-6417-4290-B8DA-874BC6D43C36}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{93E2B4DA-6417-4290-B8DA-874BC6D43C36}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{93E2B4DA-6417-4290-B8DA-874BC6D43C36}.Debug|x86.Build.0 = Debug|Any CPU
+		{93E2B4DA-6417-4290-B8DA-874BC6D43C36}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{93E2B4DA-6417-4290-B8DA-874BC6D43C36}.Release|Any CPU.Build.0 = Release|Any CPU
+		{93E2B4DA-6417-4290-B8DA-874BC6D43C36}.Release|x86.ActiveCfg = Release|Any CPU
+		{93E2B4DA-6417-4290-B8DA-874BC6D43C36}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

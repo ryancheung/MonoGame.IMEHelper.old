@@ -63,6 +63,7 @@ namespace MonoGame.IMEHelper
 #if WINDOWDX
             return new WinFormsIMEHandler(game, showDefaultIMEWindow);
 #elif DESKTOPGL
+            return new SdlIMEHandler(game, showDefaultIMEWindow);
 #elif ANDROID
 #elif IOS
 #else
@@ -223,6 +224,15 @@ namespace MonoGame.IMEHelper
         {
             if (TextInput != null)
                 TextInput(this, new TextInputEventArgs(character, key));
+        }
+
+        /// <summary>
+        /// Redirect a sdl text input event.
+        /// </summary>
+        public virtual void OnTextInput(TextInputEventArgs args)
+        {
+            if (TextInput != null)
+                TextInput(this, args);
         }
     }
 }
