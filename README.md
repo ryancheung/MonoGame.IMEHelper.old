@@ -1,4 +1,4 @@
-## MonoGame IME Helper for WindowsDX platform
+## MonoGame IME Helper for desktop including SDL2 and WindowsDX and mobile platforms
 
 ## License
 

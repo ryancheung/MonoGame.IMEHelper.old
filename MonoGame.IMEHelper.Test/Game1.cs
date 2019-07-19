@@ -67,11 +67,11 @@ namespace MonoGame.IMEHelper.Test
         /// </summary>
         protected override void Initialize()
         {
-            imeHandler = new IMEHandler(this, true);
+            imeHandler = IMEHandler.Create(this, true);
 
-            imeHandler.ResultReceived += (s, e) =>
+            imeHandler.TextInput += (s, e) =>
             {
-                switch ((int)e.Result)
+                switch ((int)e.Character)
                 {
                     case 8:
                         if (inputContent.Length > 0)
@@ -82,10 +82,10 @@ namespace MonoGame.IMEHelper.Test
                         inputContent = "";
                         break;
                     default:
-                        if (e.Result > UnicodeSimplifiedChineseMax)
+                        if (e.Character > UnicodeSimplifiedChineseMax)
                             inputContent += DefaultChar;
                         else
-                            inputContent += e.Result;
+                            inputContent += e.Character;
                         break;
                 }
             };
@@ -133,7 +133,10 @@ namespace MonoGame.IMEHelper.Test
 
             if (ks.IsKeyDown(Keys.F12) && lastState.IsKeyUp(Keys.F12))
             {
-                imeHandler.Enabled = !imeHandler.Enabled;
+                if (imeHandler.Enabled)
+                    imeHandler.StopTextComposition();
+                else
+                    imeHandler.StartTextComposition();
             }
 
             lastState = ks;
@@ -150,7 +153,7 @@ namespace MonoGame.IMEHelper.Test
             GraphicsDevice.Clear(Color.CornflowerBlue);
             spriteBatch.Begin();
 
-            Vector2 len = font1.MeasureString(inputContent);
+            Vector2 len = font1.MeasureString(inputContent.Trim());
 
             spriteBatch.DrawString(font1, "按下 F12 启用 / 停用 IME", new Vector2(10, 10), Color.White);
             spriteBatch.DrawString(font1, inputContent, new Vector2(10, 30), Color.White);

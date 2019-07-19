@@ -107,9 +107,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MonoGame.IMEHelper\MonoGame.IMEHelper.csproj">
+    <ProjectReference Include="..\MonoGame.IMEHelper\MonoGame.IMEHelper.WindowsDX.csproj">
       <Project>{942b5c2d-801a-4703-b0bb-dd312a068612}</Project>
-      <Name>MonoGame.IMEHelper</Name>
+      <Name>MonoGame.IMEHelper.WindowsDX</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
