@@ -110,7 +110,7 @@ namespace MonoGame.IMEHelper.DesktopGL.Test
 
             KeyboardState ks = Keyboard.GetState();
 
-            if (ks.IsKeyDown(Keys.F12) && lastState.IsKeyUp(Keys.F12))
+            if (ks.IsKeyDown(Keys.F1) && lastState.IsKeyUp(Keys.F1))
             {
                 if (imeHandler.Enabled)
                     imeHandler.StopTextComposition();
@@ -134,7 +134,7 @@ namespace MonoGame.IMEHelper.DesktopGL.Test
 
             Vector2 len = font1.MeasureString(inputContent.Trim());
 
-            spriteBatch.DrawString(font1, "按下 F12 启用 / 停用 IME", new Vector2(10, 10), Color.White);
+            spriteBatch.DrawString(font1, "按下 F1 启用 / 停用 IME", new Vector2(10, 10), Color.White);
             spriteBatch.DrawString(font1, inputContent, new Vector2(10, 30), Color.White);
 
             Vector2 drawPos = new Vector2(15 + len.X, 30);
