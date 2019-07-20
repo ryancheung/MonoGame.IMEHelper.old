@@ -33,7 +33,7 @@ namespace MonoGame.IMEHelper
 
     internal class AndroidIMEHandler : IMEHandler
     {
-        private new AndroidGameActivityIME GameActivityIME { get { return AndroidGameActivityIME.Instance; } }
+        private AndroidGameActivityIME GameActivityIME { get { return AndroidGameActivityIME.Instance; } }
         private EditText editText;
         private InputMethodManager inputMethodManager;
 
