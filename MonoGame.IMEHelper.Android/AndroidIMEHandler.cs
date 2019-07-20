@@ -33,6 +33,8 @@ namespace MonoGame.IMEHelper
 
     internal class AndroidIMEHandler : IMEHandler
     {
+        private const int IME_FLAG_NO_EXTRACT_UI = 0x10000000;
+
         private AndroidGameActivityIME GameActivityIME { get { return AndroidGameActivityIME.Instance; } }
         private EditText editText;
         private InputMethodManager inputMethodManager;
@@ -55,7 +57,7 @@ namespace MonoGame.IMEHelper
             editText = new EditText(GameActivityIME);
             editText.SetMaxLines(1);
             editText.InputType = InputTypes.ClassText;
-            editText.ImeOptions = (ImeAction)((int)(ImeAction.Done) | 0x10000000);
+            editText.ImeOptions = (ImeAction)((int)(ImeAction.Done) | IME_FLAG_NO_EXTRACT_UI);
             editText.SetBackgroundColor(AG.Color.Transparent);
 
             var layoutParams = new RelativeLayout.LayoutParams(LinearLayout.LayoutParams.MatchParent, LinearLayout.LayoutParams.WrapContent);
