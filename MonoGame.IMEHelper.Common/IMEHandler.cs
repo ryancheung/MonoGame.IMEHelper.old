@@ -67,6 +67,7 @@ namespace MonoGame.IMEHelper
 #elif ANDROID
             return new AndroidIMEHandler(game, showDefaultIMEWindow);
 #elif IOS
+            return new IosIMEHandler(game, showDefaultIMEWindow);
 #else
             return new WinFormsIMEHandler(game, showDefaultIMEWindow);
 #endif
