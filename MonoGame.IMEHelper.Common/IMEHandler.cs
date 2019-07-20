@@ -65,6 +65,7 @@ namespace MonoGame.IMEHelper
 #elif DESKTOPGL
             return new SdlIMEHandler(game, showDefaultIMEWindow);
 #elif ANDROID
+            return new AndroidIMEHandler(game, showDefaultIMEWindow);
 #elif IOS
 #else
             return new WinFormsIMEHandler(game, showDefaultIMEWindow);
@@ -170,6 +171,11 @@ namespace MonoGame.IMEHelper
         public virtual string ResultReadClause => string.Empty;
 
         /// <summary>
+        /// Position Y of virtual keyboard, for mobile platforms has virtual keyboard.
+        /// </summary>
+        public virtual int VirtualKeyboardHeight => 0;
+
+        /// <summary>
         /// Get the composition attribute at character index.
         /// </summary>
         /// <param name="index">Character Index</param>
@@ -233,6 +239,11 @@ namespace MonoGame.IMEHelper
         {
             if (TextInput != null)
                 TextInput(this, args);
+        }
+
+        public virtual void Update(GameTime gameTime)
+        {
+
         }
     }
 }

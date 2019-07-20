@@ -13,8 +13,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonoGame.IMEHelper.DesktopG
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonoGame.IMEHelper.WindowsDX.Test", "MonoGame.IMEHelper.WindowsDX.Test\MonoGame.IMEHelper.WindowsDX.Test.csproj", "{735A5BFD-9441-4FC3-BA13-2924E43A0B15}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonoGame.IMEHelper.Android", "MonoGame.IMEHelper.Android\MonoGame.IMEHelper.Android.csproj", "{53C49AAB-AC13-4A8B-BF2A-67A15673C3B0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonoGame.IMEHelper.Android.Test", "MonoGame.IMEHelper.Android.Test\MonoGame.IMEHelper.Android.Test.csproj", "{DB5463EA-7B80-447B-9625-D02E9146D84D}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		MonoGame.IMEHelper.Common\MonoGame.IMEHelper.Common.projitems*{53c49aab-ac13-4a8b-bf2a-67a15673c3b0}*SharedItemsImports = 4
 		MonoGame.IMEHelper.Common\MonoGame.IMEHelper.Common.projitems*{93e2b4da-6417-4290-b8da-874bc6d43c36}*SharedItemsImports = 4
 		MonoGame.IMEHelper.Common\MonoGame.IMEHelper.Common.projitems*{942b5c2d-801a-4703-b0bb-dd312a068612}*SharedItemsImports = 4
 		MonoGame.IMEHelper.Common\MonoGame.IMEHelper.Common.projitems*{a0cdbd0e-3a41-42b7-9425-a838bc2c7383}*SharedItemsImports = 13
@@ -58,6 +63,26 @@ Global
 		{735A5BFD-9441-4FC3-BA13-2924E43A0B15}.Release|Any CPU.Build.0 = Release|Any CPU
 		{735A5BFD-9441-4FC3-BA13-2924E43A0B15}.Release|x86.ActiveCfg = Release|Any CPU
 		{735A5BFD-9441-4FC3-BA13-2924E43A0B15}.Release|x86.Build.0 = Release|Any CPU
+		{53C49AAB-AC13-4A8B-BF2A-67A15673C3B0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{53C49AAB-AC13-4A8B-BF2A-67A15673C3B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{53C49AAB-AC13-4A8B-BF2A-67A15673C3B0}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{53C49AAB-AC13-4A8B-BF2A-67A15673C3B0}.Debug|x86.Build.0 = Debug|Any CPU
+		{53C49AAB-AC13-4A8B-BF2A-67A15673C3B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{53C49AAB-AC13-4A8B-BF2A-67A15673C3B0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{53C49AAB-AC13-4A8B-BF2A-67A15673C3B0}.Release|x86.ActiveCfg = Release|Any CPU
+		{53C49AAB-AC13-4A8B-BF2A-67A15673C3B0}.Release|x86.Build.0 = Release|Any CPU
+		{DB5463EA-7B80-447B-9625-D02E9146D84D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DB5463EA-7B80-447B-9625-D02E9146D84D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DB5463EA-7B80-447B-9625-D02E9146D84D}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{DB5463EA-7B80-447B-9625-D02E9146D84D}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{DB5463EA-7B80-447B-9625-D02E9146D84D}.Debug|x86.Build.0 = Debug|Any CPU
+		{DB5463EA-7B80-447B-9625-D02E9146D84D}.Debug|x86.Deploy.0 = Debug|Any CPU
+		{DB5463EA-7B80-447B-9625-D02E9146D84D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DB5463EA-7B80-447B-9625-D02E9146D84D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DB5463EA-7B80-447B-9625-D02E9146D84D}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{DB5463EA-7B80-447B-9625-D02E9146D84D}.Release|x86.ActiveCfg = Release|Any CPU
+		{DB5463EA-7B80-447B-9625-D02E9146D84D}.Release|x86.Build.0 = Release|Any CPU
+		{DB5463EA-7B80-447B-9625-D02E9146D84D}.Release|x86.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
