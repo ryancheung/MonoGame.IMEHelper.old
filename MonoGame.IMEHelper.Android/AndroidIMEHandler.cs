@@ -58,7 +58,7 @@ namespace MonoGame.IMEHelper
             editText.ImeOptions = (ImeAction)((int)(ImeAction.Done) | 0x10000000);
             editText.SetBackgroundColor(AG.Color.Transparent);
 
-            var layoutParams = new RelativeLayout.LayoutParams(LinearLayout.LayoutParams.FillParent, LinearLayout.LayoutParams.WrapContent);
+            var layoutParams = new RelativeLayout.LayoutParams(LinearLayout.LayoutParams.MatchParent, LinearLayout.LayoutParams.WrapContent);
             layoutParams.TopMargin = -200; // Move editText view off from screen.
             GameActivityIME.AddContentView(editText, layoutParams);
 
