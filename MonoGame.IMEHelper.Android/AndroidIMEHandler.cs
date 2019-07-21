@@ -22,7 +22,7 @@ namespace MonoGame.IMEHelper
 
         public AG.Point ScreenSize { get; private set; } = new AG.Point();
         public Rect KeyboardRect { get; private set; } = new AG.Rect();
-        public int KeyboardHeight { get { return ScreenSize.Y - KeyboardRect.Height(); } }
+        public int KeyboardHeight { get { return KeyboardRect.Height(); } }
 
         public void OnGlobalLayout()
         {
@@ -110,7 +110,7 @@ namespace MonoGame.IMEHelper
             {
                 if (TouchLocationState.Pressed == touchLocation.State)
                 {
-                    if (touchLocation.Position.Y < (VirtualKeyboardHeight - KeyboardHideOffset))
+                    if (touchLocation.Position.Y < ((ScreenSize.Y - VirtualKeyboardHeight) - KeyboardHideOffset))
                         StopTextComposition();
                 }
             }
