@@ -60,8 +60,7 @@ namespace MonoGame.IMEHelper
 
             UIKeyboard.Notifications.ObserveWillShow((s, e) =>
             {
-                var r = UIKeyboard.FrameBeginFromNotification(e.Notification);
-                virtualKeyboardHeight = (int)r.Height;
+                virtualKeyboardHeight = (int)e.FrameBegin.Height;
             });
         }
 
