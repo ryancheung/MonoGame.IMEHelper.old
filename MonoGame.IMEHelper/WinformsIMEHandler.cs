@@ -41,6 +41,14 @@ namespace MonoGame.IMEHelper
             _nativeWnd.DisableIME();
         }
 
+        public override void SetTextInputRect(ref Rectangle rect)
+        {
+            if (!Enabled)
+                return;
+
+            _nativeWnd.SetTextInputRect(ref rect);
+        }
+
         public override string[] Candidates => _nativeWnd.Candidates;
         public override uint CandidatesPageSize => _nativeWnd.CandidatesPageSize;
         public override uint CandidatesPageStart => _nativeWnd.CandidatesPageStart;

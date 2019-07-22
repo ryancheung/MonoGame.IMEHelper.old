@@ -88,6 +88,14 @@ namespace MonoGame.IMEHelper.WindowsDX.Test
                             inputContent += e.Character;
                         break;
                 }
+
+                inputContent = inputContent.Trim();
+            };
+
+            imeHandler.TextComposition += (o, e) =>
+            {
+                var rect = new Rectangle(10, 50, 0, 0);
+                imeHandler.SetTextInputRect(ref rect);
             };
 
             IsMouseVisible = true;
@@ -153,7 +161,7 @@ namespace MonoGame.IMEHelper.WindowsDX.Test
             GraphicsDevice.Clear(Color.CornflowerBlue);
             spriteBatch.Begin();
 
-            Vector2 len = font1.MeasureString(inputContent.Trim());
+            Vector2 len = font1.MeasureString(inputContent);
 
             spriteBatch.DrawString(font1, "按下 F1 启用 / 停用 IME", new Vector2(10, 10), Color.White);
             spriteBatch.DrawString(font1, inputContent, new Vector2(10, 30), Color.White);

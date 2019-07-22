@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework;
+using System;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
@@ -146,6 +147,8 @@ namespace MonoGame.IMEHelper
         {
             IsEnabled = true;
 
+            IMM.CreateCaret(Handle, IntPtr.Zero, 1, 1);
+
             _context = IMM.ImmGetContext(Handle);
             if (_context != IntPtr.Zero)
             {
@@ -165,7 +168,20 @@ namespace MonoGame.IMEHelper
         {
             IsEnabled = false;
 
+            IMM.DestroyCaret();
+
             IMM.ImmAssociateContext(Handle, IntPtr.Zero);
+        }
+
+        public void SetTextInputRect(ref Rectangle rect)
+        {
+            _context = IMM.ImmGetContext(Handle);
+
+            var candidateForm = new IMM.CandidateForm(new IMM.Point(rect.X, rect.Y));
+            IMM.ImmSetCandidateWindow(_context, ref candidateForm);
+            IMM.SetCaretPos(rect.X, rect.Y);
+
+            IMM.ImmReleaseContext(Handle, _context);
         }
 
         /// <summary>

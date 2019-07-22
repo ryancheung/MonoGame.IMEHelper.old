@@ -80,6 +80,20 @@ namespace MonoGame.IMEHelper
         [DllImport("user32.dll")]
         public static extern short VkKeyScanEx(char ch, IntPtr dwhkl);
 
+        public const int CFS_CANDIDATEPOS = 64;
+
+        [DllImport("imm32.dll", SetLastError = true)]
+        public static extern bool ImmSetCandidateWindow(IntPtr hIMC, ref CandidateForm candidateForm);
+
+        [DllImport("user32.dll", SetLastError = true)]
+        public static extern bool CreateCaret(IntPtr hWnd, IntPtr hBitmap, int nWidth, int nHeight);
+
+        [DllImport("user32.dll", SetLastError = true)]
+        public static extern bool DestroyCaret();
+
+        [DllImport("user32.dll", SetLastError = true)]
+        public static extern bool SetCaretPos(int x, int y);
+
         [StructLayoutAttribute(LayoutKind.Sequential)]
         public struct CandidateList
         {
@@ -91,6 +105,45 @@ namespace MonoGame.IMEHelper
             public uint dwPageSize;
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 1, ArraySubType = UnmanagedType.U4)]
             public uint[] dwOffset;
+        }
+
+        [StructLayoutAttribute(LayoutKind.Sequential)]
+        public struct Point
+        {
+            public int X;
+            public int Y;
+            public Point(int x, int y)
+            {
+                X = x;
+                Y = y;
+            }
+        }
+
+        [StructLayoutAttribute(LayoutKind.Sequential)]
+        public struct Rect
+        {
+            public int left;
+            public int top;
+            public int right;
+            public int bottom;
+        }
+
+        [StructLayoutAttribute(LayoutKind.Sequential)]
+        public struct CandidateForm
+        {
+            public uint dwIndex;
+            public uint dwStyle;
+            public Point ptCurrentPos;
+            public Rect rcArea;
+
+
+            public CandidateForm(Point pos)
+            {
+                this.dwIndex = 0;
+                this.dwStyle = CFS_CANDIDATEPOS;
+                this.ptCurrentPos = pos;
+                this.rcArea = new Rect();
+            }
         }
     }
 }
