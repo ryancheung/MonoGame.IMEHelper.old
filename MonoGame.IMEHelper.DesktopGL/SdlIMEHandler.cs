@@ -26,11 +26,17 @@ namespace MonoGame.IMEHelper
 
         public override void StartTextComposition()
         {
+            if (Enabled)
+                return;
+
             Sdl.StartTextInput();
         }
 
         public override void StopTextComposition()
         {
+            if (!Enabled)
+                return;
+
             Sdl.StopTextInput();
         }
 

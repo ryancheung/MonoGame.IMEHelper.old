@@ -90,6 +90,9 @@ namespace MonoGame.IMEHelper
 
         public override void StartTextComposition()
         {
+            if (Enabled)
+                return;
+
             editText.RequestFocus();
             inputMethodManager.ShowSoftInput(editText, ShowFlags.Implicit);
             Enabled = true;
@@ -97,6 +100,9 @@ namespace MonoGame.IMEHelper
 
         public override void StopTextComposition()
         {
+            if (!Enabled)
+                return;
+
             inputMethodManager.HideSoftInputFromWindow(GameActivityIME.CurrentFocus.WindowToken, HideSoftInputFlags.NotAlways);
             Enabled = false;
         }

@@ -67,6 +67,9 @@ namespace MonoGame.IMEHelper
 
         public override void StartTextComposition()
         {
+            if (Enabled)
+                return;
+
             gameViewController.PresentViewController(textInputViewController, false, new Action(() =>
             {
                 textInputViewController.TextField.BecomeFirstResponder();
@@ -75,6 +78,9 @@ namespace MonoGame.IMEHelper
 
         public override void StopTextComposition()
         {
+            if (!Enabled)
+                return;
+
             textInputViewController.TextField.Text = string.Empty;
             textInputViewController.TextField.ResignFirstResponder();
             gameViewController.DismissViewController(false, null);
