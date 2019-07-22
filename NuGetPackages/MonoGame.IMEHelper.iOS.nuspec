@@ -8,7 +8,7 @@
     <owners>ryancheung</owners>
     <licenseUrl>https://github.com/ryancheung/MonoGame.IMEHelper/blob/master/LICENSE</licenseUrl>
     <projectUrl>https://github.com/ryancheung/MonoGame.IMEHelper</projectUrl>
-    <iconUrl></iconUrl>
+    <iconUrl>https://www.nuget.org/Content/gallery/img/default-package-icon.svg</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>MonoGame IME Helper for all platforms. The goal is to make it easy for XNA developers to create cross-platform games with IME support.
 
