@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/10/nuspec.xsd">
+  <metadata>
+    <id>MonoGame.IMEHelper.iOS</id>
+    <version>0.0.0.0</version>
+    <title>MonoGame.IMEHelper.iOS</title>
+    <authors>ryancheung</authors>
+    <owners>ryancheung</owners>
+    <licenseUrl>https://github.com/ryancheung/MonoGame.IMEHelper/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/ryancheung/MonoGame.IMEHelper</projectUrl>
+    <iconUrl></iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>MonoGame IME Helper for all platforms. The goal is to make it easy for XNA developers to create cross-platform games with IME support.
+
+This package provides you with MonoGame IME Helper that works on iOS.</description>
+    <summary>This package provides you with MonoGame IME Helper that works on iOS.</summary>
+    <copyright>Copyright © 2019 ryancheung</copyright>
+    <language>en-US</language>
+  </metadata>
+  <files>    
+    <!-- C# Assemblies -->
+    <file src="..\MonoGame.IMEHelper.iOS\bin\Release\MonoGame.IMEHelper.dll" target="lib\XamariniOS\MonoGame.IMEHelper.dll" />
+  </files>
+</package>
