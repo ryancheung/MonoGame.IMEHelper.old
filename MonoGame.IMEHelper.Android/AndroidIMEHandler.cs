@@ -52,6 +52,9 @@ namespace MonoGame.IMEHelper
 
         public override void PlatformInitialize()
         {
+            if (GameActivityIME == null)
+                throw new System.Exception("You have to change Activity's base class to AndroidGameActivityIME before initializing IMEHandler.");
+
             inputMethodManager = (InputMethodManager)GameActivityIME.GetSystemService(Activity.InputMethodService);
 
             editText = new EditText(GameActivityIME);
