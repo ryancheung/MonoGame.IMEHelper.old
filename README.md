@@ -9,6 +9,23 @@
 
 ## Getting started
 
+### NuGet
+
+MonoGame.IMEHelper is available on NuGet. It can be installed by issuing commands like the following command in the package manager console:
+
+```
+PM> Install-Package MonoGame.IMEHelper.WindowsDX
+```
+
+All available packages for specific platforms:
+
+```
+MonoGame.IMEHelper.Android
+MonoGame.IMEHelper.DesktopGL
+MonoGame.IMEHelper.iOS
+MonoGame.IMEHelper.WindowsDX
+```
+
 ### Initialize a IMEHandler instance in your game Initialize method
 
 ```c#
