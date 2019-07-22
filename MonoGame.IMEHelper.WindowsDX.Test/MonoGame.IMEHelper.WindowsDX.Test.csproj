@@ -31,6 +31,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
     <PlatformTarget>AnyCPU</PlatformTarget>
     <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>WINDOWS</DefineConstants>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Game1.cs" />
