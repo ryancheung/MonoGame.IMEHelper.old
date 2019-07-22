@@ -54,12 +54,6 @@
     <None Include="app.manifest" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MonoGame.IMEHelper\MonoGame.IMEHelper.WindowsDX.csproj">
-      <Project>{942b5c2d-801a-4703-b0bb-dd312a068612}</Project>
-      <Name>MonoGame.IMEHelper.WindowsDX</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <PackageReference Include="MonoGame.DisplayModeHelper">
       <Version>1.0.2</Version>
     </PackageReference>
@@ -69,6 +63,12 @@
     <PackageReference Include="SpriteFontPlus.MonoGame">
       <Version>0.7.0.22</Version>
     </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MonoGame.IMEHelper.WindowsDX\MonoGame.IMEHelper.WindowsDX.csproj">
+      <Project>{942b5c2d-801a-4703-b0bb-dd312a068612}</Project>
+      <Name>MonoGame.IMEHelper.WindowsDX</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Content.Builder.targets" />
