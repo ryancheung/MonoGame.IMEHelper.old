@@ -26,8 +26,8 @@ namespace MonoGame.IMEHelper.Android.Test
 		
 		public static void UpdateIdValues()
 		{
-			global::MonoGame.IMEHelper.Android.Resource.String.app_name = global::MonoGame.IMEHelper.Android.Test.Resource.String.app_name;
-			global::MonoGame.IMEHelper.Android.Resource.String.hello = global::MonoGame.IMEHelper.Android.Test.Resource.String.hello;
+			global::MonoGame.IMEHelper.Resource.String.app_name = global::MonoGame.IMEHelper.Android.Test.Resource.String.app_name;
+			global::MonoGame.IMEHelper.Resource.String.hello = global::MonoGame.IMEHelper.Android.Test.Resource.String.hello;
 		}
 		
 		public partial class Attribute

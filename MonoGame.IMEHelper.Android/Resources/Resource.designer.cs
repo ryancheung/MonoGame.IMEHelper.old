@@ -9,9 +9,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: global::Android.Runtime.ResourceDesignerAttribute("MonoGame.IMEHelper.Android.Resource", IsApplication=false)]
+[assembly: global::Android.Runtime.ResourceDesignerAttribute("MonoGame.IMEHelper.Resource", IsApplication=false)]
 
-namespace MonoGame.IMEHelper.Android
+namespace MonoGame.IMEHelper
 {
 	
 	
