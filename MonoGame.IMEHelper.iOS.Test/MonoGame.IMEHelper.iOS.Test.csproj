@@ -30,6 +30,8 @@
     <MtouchFastDev>true</MtouchFastDev>
     <MtouchDebug>true</MtouchDebug>
     <MtouchProfiling>true</MtouchProfiling>
+    <CodesignKey>iPhone Developer: zhi qun Zhang (K8SGL453PU)</CodesignKey>
+    <CodesignProvision>VS: WildCard Development</CodesignProvision>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
     <DebugType>none</DebugType>
@@ -129,10 +131,6 @@
     <None Include="Entitlements.plist" />
     <None Include="Info.plist" />
     <MonoGameContentReference Include="Content\Content.mgcb" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Default.png" />
-    <BundleResource Include="GameThumbnail.png" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="MonoGame.Framework.iOS">
