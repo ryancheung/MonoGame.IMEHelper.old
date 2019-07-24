@@ -81,6 +81,11 @@ namespace MonoGame.IMEHelper
             {
                 virtualKeyboardHeight = (int)e.FrameBegin.Height;
             });
+
+            UIKeyboard.Notifications.ObserveWillHide((s, e) =>
+            {
+                virtualKeyboardHeight = 0;
+            });
         }
 
         private void TextField_OnDeleteBackward(object sender, EventArgs e)
