@@ -1,17 +1,52 @@
 ﻿using CoreGraphics;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Input.Touch;
 using System;
 using UIKit;
 
 namespace MonoGame.IMEHelper
 {
+    internal class UIBackwardsTextField : UITextField
+    {
+        // A delegate type for hooking up change notifications.
+        public delegate void DeleteBackwardEventHandler(object sender, EventArgs e);
+
+        // An event that clients can use to be notified whenever the
+        // elements of the list change.
+        public event DeleteBackwardEventHandler OnDeleteBackward;
+
+        public UIBackwardsTextField(CGRect rect) : base(rect)
+        {
+        }
+
+        public void OnDeleteBackwardPressed()
+        {
+            if (OnDeleteBackward != null)
+            {
+                OnDeleteBackward(null, null);
+            }
+        }
+
+        public UIBackwardsTextField()
+        {
+            BorderStyle = UITextBorderStyle.RoundedRect;
+            ClipsToBounds = true;
+        }
+
+        public override void DeleteBackward()
+        {
+            base.DeleteBackward();
+            OnDeleteBackwardPressed();
+        }
+    }
+
     internal class IosIMEHandler : IMEHandler
     {
         private UIWindow mainWindow;
         private UIViewController gameViewController;
 
-        private UITextField textField;
+        private UIBackwardsTextField textField;
 
         private int virtualKeyboardHeight;
 
@@ -34,10 +69,11 @@ namespace MonoGame.IMEHelper
             mainWindow = GameInstance.Services.GetService<UIWindow>();
             gameViewController = GameInstance.Services.GetService<UIViewController>();
 
-            textField = new UITextField(new CGRect(0, -400, 200, 40));
+            textField = new UIBackwardsTextField(new CGRect(0, -400, 200, 40));
             textField.KeyboardType = UIKeyboardType.Default;
             textField.ReturnKeyType = UIReturnKeyType.Done;
             textField.EditingChanged += TextField_ValueChanged;
+            textField.OnDeleteBackward += TextField_OnDeleteBackward;
 
             gameViewController.Add(textField);
 
@@ -45,6 +81,12 @@ namespace MonoGame.IMEHelper
             {
                 virtualKeyboardHeight = (int)e.FrameBegin.Height;
             });
+        }
+
+        private void TextField_OnDeleteBackward(object sender, EventArgs e)
+        {
+            var key = Keys.Back;
+            OnTextInput(new TextInputEventArgs((char)key, key));
         }
 
         public override void StartTextComposition()
