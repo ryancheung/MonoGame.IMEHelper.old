@@ -6,43 +6,12 @@ using UIKit;
 
 namespace MonoGame.IMEHelper
 {
-    internal class TextInputViewController : UIViewController
-    {
-        public UITextField TextField { get; private set; }
-
-        private IosIMEHandler imeHandler;
-
-        public TextInputViewController(IosIMEHandler imeHandler) : base()
-        {
-            this.imeHandler = imeHandler;
-        }
-
-        public override void ViewDidLoad()
-        {
-            base.ViewDidLoad();
-
-            TextField = new UITextField(new CGRect(0, -100, 200, 40));
-            TextField.KeyboardType = UIKeyboardType.Default;
-            TextField.ReturnKeyType = UIReturnKeyType.Done;
-            TextField.ValueChanged += TextField_ValueChanged;
-
-            View.AddSubview(TextField);
-        }
-
-        private void TextField_ValueChanged(object sender, EventArgs e)
-        {
-            foreach (var c in TextField.Text)
-                imeHandler.OnTextInput(new TextInputEventArgs(c, KeyboardUtil.ToXna(c)));
-
-            TextField.Text = string.Empty;
-        }
-    }
-
     internal class IosIMEHandler : IMEHandler
     {
         private UIWindow mainWindow;
         private UIViewController gameViewController;
-        private TextInputViewController textInputViewController;
+
+        private UITextField textField;
 
         private int virtualKeyboardHeight;
 
@@ -52,11 +21,25 @@ namespace MonoGame.IMEHelper
 
         public override bool Enabled { get; protected set; }
 
+        private void TextField_ValueChanged(object sender, EventArgs e)
+        {
+            foreach (var c in textField.Text)
+                OnTextInput(new TextInputEventArgs(c, KeyboardUtil.ToXna(c)));
+
+            textField.Text = string.Empty;
+        }
+
         public override void PlatformInitialize()
         {
             mainWindow = GameInstance.Services.GetService<UIWindow>();
             gameViewController = GameInstance.Services.GetService<UIViewController>();
-            textInputViewController = new TextInputViewController(this);
+
+            textField = new UITextField(new CGRect(0, -400, 200, 40));
+            textField.KeyboardType = UIKeyboardType.Default;
+            textField.ReturnKeyType = UIReturnKeyType.Done;
+            textField.EditingChanged += TextField_ValueChanged;
+
+            gameViewController.Add(textField);
 
             UIKeyboard.Notifications.ObserveWillShow((s, e) =>
             {
@@ -69,10 +52,8 @@ namespace MonoGame.IMEHelper
             if (Enabled)
                 return;
 
-            gameViewController.PresentViewController(textInputViewController, false, new Action(() =>
-            {
-                textInputViewController.TextField.BecomeFirstResponder();
-            }));
+            textField.BecomeFirstResponder();
+            Enabled = true;
         }
 
         public override void StopTextComposition()
@@ -80,9 +61,9 @@ namespace MonoGame.IMEHelper
             if (!Enabled)
                 return;
 
-            textInputViewController.TextField.Text = string.Empty;
-            textInputViewController.TextField.ResignFirstResponder();
-            gameViewController.DismissViewController(false, null);
+            textField.Text = string.Empty;
+            textField.ResignFirstResponder();
+            Enabled = false;
         }
 
         public override int VirtualKeyboardHeight => virtualKeyboardHeight;

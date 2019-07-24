@@ -29,6 +29,7 @@ namespace MonoGame.IMEHelper.iOS
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
+            graphics.IsFullScreen = true;
             Content.RootDirectory = "Content";
             graphics.IsFullScreen = true;
         }
@@ -142,9 +143,11 @@ namespace MonoGame.IMEHelper.iOS
             Vector2 len = font1.MeasureString(inputContent.Trim());
 
             spriteBatch.DrawString(font1, "点击屏幕 启用 / 停用 IME", new Vector2(10, 10), Color.White);
-            spriteBatch.DrawString(font1, inputContent, new Vector2(10, 30), Color.White);
+            spriteBatch.DrawString(font1, string.Format("Virtual Keyboard Height: {0}", imeHandler.VirtualKeyboardHeight),
+                new Vector2(10, 30), Color.White);
+            spriteBatch.DrawString(font1, inputContent, new Vector2(10, 60), Color.White);
 
-            Vector2 drawPos = new Vector2(15 + len.X, 30);
+            Vector2 drawPos = new Vector2(15 + len.X, 60);
             Vector2 measStr = new Vector2(0, font1.MeasureString("|").Y);
             Color compColor = Color.White;
 
