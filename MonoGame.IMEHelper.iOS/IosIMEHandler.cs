@@ -59,9 +59,24 @@ namespace MonoGame.IMEHelper
         private void TextField_ValueChanged(object sender, EventArgs e)
         {
             foreach (var c in textField.Text)
-                OnTextInput(new TextInputEventArgs(c, KeyboardUtil.ToXna(c)));
+            {
+                var nc = c;
+                if (nc == 8198) // Handle invalid character
+                    nc = ' ';
+
+                OnTextInput(new TextInputEventArgs(nc, KeyboardUtil.ToXna(nc)));
+            }
 
             textField.Text = string.Empty;
+        }
+
+        private bool TextField_ShouldReturn(UITextField textfield)
+        {
+            // Not found, so remove keyboard.
+            textfield.ResignFirstResponder();
+
+            // We do not want UITextField to insert line-breaks.
+            return false;
         }
 
         public override void PlatformInitialize()
@@ -74,6 +89,7 @@ namespace MonoGame.IMEHelper
             textField.ReturnKeyType = UIReturnKeyType.Done;
             textField.EditingChanged += TextField_ValueChanged;
             textField.OnDeleteBackward += TextField_OnDeleteBackward;
+            textField.ShouldReturn += TextField_ShouldReturn;
 
             gameViewController.Add(textField);
 
