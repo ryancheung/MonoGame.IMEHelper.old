@@ -379,6 +379,9 @@ namespace MonoGame.IMEHelper
         private void CharEvent(int wParam)
         {
             var charInput = (char)wParam;
+            if (char.IsSurrogate(charInput))
+                return;
+
             var key = (Microsoft.Xna.Framework.Input.Keys) (IMM.VkKeyScanEx(charInput, InputLanguage.CurrentInputLanguage.Handle) & 0xff);
 
             _imeHandler.OnTextInput(charInput, key);
