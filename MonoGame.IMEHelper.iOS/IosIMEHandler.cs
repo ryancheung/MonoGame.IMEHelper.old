@@ -1,4 +1,5 @@
 ﻿using CoreGraphics;
+using Foundation;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Input.Touch;
@@ -14,24 +15,39 @@ namespace MonoGame.IMEHelper
 
         // An event that clients can use to be notified whenever the
         // elements of the list change.
-        public event DeleteBackwardEventHandler OnDeleteBackward;
+        public event DeleteBackwardEventHandler DeleteBackwardPressed;
+        public event EventHandler TextChanged;
+
+        private bool UIBackwardsTextField_ShouldChangeCharacters(UITextField textField, NSRange range, string replacementString)
+        {
+            if (textField.IsFirstResponder)
+            {
+                if (textField.TextInputMode == null || textField.TextInputMode.PrimaryLanguage == "emoji")
+                    return false;
+            }
+
+            return true;
+        }
 
         public UIBackwardsTextField(CGRect rect) : base(rect)
         {
+            this.EditingChanged += UIBackwardsTextField_EditingChanged;
+            this.ShouldChangeCharacters += UIBackwardsTextField_ShouldChangeCharacters;
+        }
+
+        private void UIBackwardsTextField_EditingChanged(object sender, EventArgs e)
+        {
+            if (MarkedTextRange == null || MarkedTextRange.IsEmpty)
+            {
+                if (TextChanged != null)
+                    TextChanged(null, null);
+            }
         }
 
         public void OnDeleteBackwardPressed()
         {
-            if (OnDeleteBackward != null)
-            {
-                OnDeleteBackward(null, null);
-            }
-        }
-
-        public UIBackwardsTextField()
-        {
-            BorderStyle = UITextBorderStyle.RoundedRect;
-            ClipsToBounds = true;
+            if (DeleteBackwardPressed != null)
+                DeleteBackwardPressed(null, null);
         }
 
         public override void DeleteBackward()
@@ -56,20 +72,6 @@ namespace MonoGame.IMEHelper
 
         public override bool Enabled { get; protected set; }
 
-        private void TextField_ValueChanged(object sender, EventArgs e)
-        {
-            foreach (var c in textField.Text)
-            {
-                var nc = c;
-                if (nc == 8198) // Handle invalid character
-                    nc = ' ';
-
-                OnTextInput(new TextInputEventArgs(nc, KeyboardUtil.ToXna(nc)));
-            }
-
-            textField.Text = string.Empty;
-        }
-
         private bool TextField_ShouldReturn(UITextField textfield)
         {
             // Not found, so remove keyboard.
@@ -87,8 +89,8 @@ namespace MonoGame.IMEHelper
             textField = new UIBackwardsTextField(new CGRect(0, -400, 200, 40));
             textField.KeyboardType = UIKeyboardType.Default;
             textField.ReturnKeyType = UIReturnKeyType.Done;
-            textField.EditingChanged += TextField_ValueChanged;
-            textField.OnDeleteBackward += TextField_OnDeleteBackward;
+            textField.DeleteBackwardPressed += TextField_DeleteBackward;
+            textField.TextChanged += TextField_TextChanged; ;
             textField.ShouldReturn += TextField_ShouldReturn;
 
             gameViewController.Add(textField);
@@ -104,7 +106,16 @@ namespace MonoGame.IMEHelper
             });
         }
 
-        private void TextField_OnDeleteBackward(object sender, EventArgs e)
+        private void TextField_TextChanged(object sender, EventArgs e)
+        {
+            string resultText = KeyboardUtil.RemoveInvalidCharacter(textField.Text);
+            foreach (var c in resultText)
+                OnTextInput(new TextInputEventArgs(c, KeyboardUtil.ToXna(c)));
+
+            textField.Text = string.Empty;
+        }
+
+        private void TextField_DeleteBackward(object sender, EventArgs e)
         {
             var key = Keys.Back;
             OnTextInput(new TextInputEventArgs((char)key, key));

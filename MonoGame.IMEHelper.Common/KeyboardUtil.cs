@@ -1,6 +1,8 @@
 ﻿using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
+using System.Text;
+using System.Text.RegularExpressions;
 
 namespace MonoGame.IMEHelper
 {
@@ -157,6 +159,20 @@ namespace MonoGame.IMEHelper
                 return _map[key];
 
             return Keys.None;
+        }
+
+        public static string RemoveInvalidCharacter(string input)
+        {
+            StringBuilder sb = new StringBuilder();
+            foreach (var c in input)
+            {
+                if (char.IsSurrogate(c))
+                    continue;
+
+                sb.Append(c);
+            }
+
+            return sb.ToString();
         }
     }
 }

@@ -22,10 +22,6 @@ namespace MonoGame.IMEHelper.iOS
         Texture2D whitePixel;
         string inputContent = string.Empty;
 
-        const int UnicodeSimplifiedChineseMin = 0x4E00;
-        const int UnicodeSimplifiedChineseMax = 0x9FA5;
-        const string DefaultChar = "?";
-
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -57,10 +53,7 @@ namespace MonoGame.IMEHelper.iOS
                         inputContent = "";
                         break;
                     default:
-                        if (e.Character > UnicodeSimplifiedChineseMax)
-                            inputContent += DefaultChar;
-                        else
-                            inputContent += e.Character;
+                        inputContent += e.Character;
                         break;
                 }
             };
@@ -139,8 +132,7 @@ namespace MonoGame.IMEHelper.iOS
         {
             graphics.GraphicsDevice.Clear(Color.CornflowerBlue);
             spriteBatch.Begin();
-
-            Vector2 len = font1.MeasureString(inputContent.Trim());
+            Vector2 len = font1.MeasureString(inputContent);
 
             spriteBatch.DrawString(font1, "点击屏幕 启用 / 停用 IME", new Vector2(10, 10), Color.White);
             spriteBatch.DrawString(font1, string.Format("Virtual Keyboard Height: {0}", imeHandler.VirtualKeyboardHeight),
