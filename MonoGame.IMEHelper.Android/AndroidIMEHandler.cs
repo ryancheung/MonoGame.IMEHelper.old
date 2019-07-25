@@ -83,7 +83,8 @@ namespace MonoGame.IMEHelper
 
         private void EditText_TextChanged(object sender, TextChangedEventArgs e)
         {
-            foreach (var c in e.Text)
+            string resultText = KeyboardUtil.RemoveInvalidCharacter(e.Text.ToString());
+            foreach (var c in resultText)
                 OnTextInput(new TextInputEventArgs(c, KeyboardUtil.ToXna(c)));
 
             editText.TextChanged -= EditText_TextChanged;
