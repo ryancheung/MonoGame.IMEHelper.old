@@ -9,11 +9,12 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>MonoGame.IMEHelper</RootNamespace>
     <AssemblyName>MonoGame.IMEHelper</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -51,8 +52,8 @@
     <Compile Include="SDL2.cs" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="MonoGame.Framework.DesktopGL">
-      <Version>3.7.1.189</Version>
+    <PackageReference Include="Ryan.MonoGame.Framework.DesktopGL">
+      <Version>3.7.100</Version>
     </PackageReference>
   </ItemGroup>
   <Import Project="..\MonoGame.IMEHelper.Common\MonoGame.IMEHelper.Common.projitems" Label="Shared" />
