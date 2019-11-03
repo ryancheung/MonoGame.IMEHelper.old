@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>MonoGame.IMEHelper</RootNamespace>
     <AssemblyName>MonoGame.IMEHelper</AssemblyName>
-    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
     <NuGetPackageImportStamp>
@@ -53,7 +53,7 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Ryan.MonoGame.Framework.DesktopGL">
-      <Version>3.7.100</Version>
+      <Version>3.7.106</Version>
     </PackageReference>
   </ItemGroup>
   <Import Project="..\MonoGame.IMEHelper.Common\MonoGame.IMEHelper.Common.projitems" Label="Shared" />
