@@ -19,6 +19,6 @@ This package provides you with MonoGame IME Helper that works on WindowsDX.</des
   </metadata>
   <files>    
     <!-- C# Assemblies -->
-    <file src="..\MonoGame.IMEHelper.WindowsDX\bin\Release\MonoGame.IMEHelper.dll" target="lib\net45\MonoGame.IMEHelper.dll" />
+    <file src="..\MonoGame.IMEHelper.WindowsDX\bin\Release\netcoreapp3.0\MonoGame.IMEHelper.dll" target="lib\netcoreapp3.0\MonoGame.IMEHelper.dll" />
   </files>
 </package>

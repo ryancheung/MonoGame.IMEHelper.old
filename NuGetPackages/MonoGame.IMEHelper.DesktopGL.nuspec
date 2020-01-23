@@ -19,6 +19,6 @@ This package provides you with MonoGame IME Helper that works on DesktopGL.</des
   </metadata>
   <files>    
     <!-- C# Assemblies -->
-    <file src="..\MonoGame.IMEHelper.DesktopGL\bin\Release\MonoGame.IMEHelper.dll" target="lib\net45\MonoGame.IMEHelper.dll" />
+    <file src="..\MonoGame.IMEHelper.DesktopGL\bin\Release\netstandard2.0\MonoGame.IMEHelper.dll" target="lib\netstandard2.0\MonoGame.IMEHelper.dll" />
   </files>
 </package>
