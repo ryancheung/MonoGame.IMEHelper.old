@@ -5,15 +5,14 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{E71F3053-056C-4381-9638-048ED73BDFF6}</ProjectGuid>
+    <ProjectGuid>{74DD5D92-4F34-492D-9E99-B18439CC2966}</ProjectGuid>
     <ProjectTypeGuids>{FEACFBD2-3405-455C-9665-78FE426C6842};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <TemplateGuid>{a52b8a63-bc84-4b47-910d-692533484892}</TemplateGuid>
     <OutputType>Library</OutputType>
     <RootNamespace>MonoGame.IMEHelper</RootNamespace>
     <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
     <AssemblyName>MonoGame.IMEHelper</AssemblyName>
-    <NuGetPackageImportStamp>
-    </NuGetPackageImportStamp>
+    <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -23,7 +22,6 @@
     <DefineConstants>DEBUG;__IOS__;__MOBILE__;__UNIFIED__;IOS</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <ConsolePause>false</ConsolePause>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>full</DebugType>
@@ -31,7 +29,6 @@
     <OutputPath>bin\Release</OutputPath>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <ConsolePause>false</ConsolePause>
     <DefineConstants>__IOS__;__MOBILE__;__UNIFIED__;IOS</DefineConstants>
   </PropertyGroup>
   <ItemGroup>

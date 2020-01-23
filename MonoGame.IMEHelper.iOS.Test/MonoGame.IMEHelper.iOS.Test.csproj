@@ -127,10 +127,11 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Content\simsun.ttf" />
+    <EmbeddedResource Include="..\Fonts\simsun.ttf">
+      <Link>simsun.ttf</Link>
+    </EmbeddedResource>
     <None Include="Entitlements.plist" />
     <None Include="Info.plist" />
-    <MonoGameContentReference Include="Content\Content.mgcb" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="MonoGame.Framework.iOS">

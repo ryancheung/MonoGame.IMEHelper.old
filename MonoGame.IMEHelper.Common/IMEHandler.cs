@@ -60,7 +60,7 @@ namespace MonoGame.IMEHelper
 
         public static IMEHandler Create(Game game, bool showDefaultIMEWindow = false)
         {
-#if WINDOWS
+#if WINDOWSDX
             return new WinFormsIMEHandler(game, showDefaultIMEWindow);
 #elif DESKTOPGL
             return new SdlIMEHandler(game, showDefaultIMEWindow);

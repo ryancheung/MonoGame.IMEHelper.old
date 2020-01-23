@@ -1,22 +1,18 @@
-using Microsoft.Xna.Framework;
+Ôªøusing Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using Microsoft.Xna.Framework.Input.Touch;
 using SpriteFontPlus;
-using System.IO;
-using System.Linq;
 using System.Reflection;
+using Microsoft.Xna.Framework.Input.Touch;
+using System.Linq;
 
 namespace MonoGame.IMEHelper.Android.Test
 {
-    /// <summary>
-    /// This is the main type for your game.
-    /// </summary>
     public class Game1 : Game
     {
-        GraphicsDeviceManager graphics;
-        SpriteBatch spriteBatch;
-        DynamicSpriteFont font1;
+        private GraphicsDeviceManager _graphics;
+        private SpriteBatch _spriteBatch;
+        DynamicSpriteFont _font;
 
         IMEHandler imeHandler;
         Texture2D whitePixel;
@@ -28,24 +24,13 @@ namespace MonoGame.IMEHelper.Android.Test
 
         public Game1()
         {
-            graphics = new GraphicsDeviceManager(this);
+            _graphics = new GraphicsDeviceManager(this);
+            _graphics.IsFullScreen = true;
+
             Content.RootDirectory = "Content";
-
-            graphics.PreparingDeviceSettings += Graphics_PreparingDeviceSettings;
+            IsMouseVisible = true;
         }
 
-        private void Graphics_PreparingDeviceSettings(object sender, PreparingDeviceSettingsEventArgs e)
-        {
-            e.GraphicsDeviceInformation.PresentationParameters.HardwareModeSwitch = false;
-            e.GraphicsDeviceInformation.PresentationParameters.IsFullScreen = true;
-        }
-
-        /// <summary>
-        /// Allows the game to perform any initialization it needs to before starting to run.
-        /// This is where it can query for any required services and load any non-graphic
-        /// related content.  Calling base.Initialize will enumerate through any components
-        /// and initialize them as well.
-        /// </summary>
         protected override void Initialize()
         {
             imeHandler = IMEHandler.Create(this, true);
@@ -90,35 +75,16 @@ namespace MonoGame.IMEHelper.Android.Test
             return ret;
         }
 
-        /// <summary>
-        /// LoadContent will be called once per game and is the place to load
-        /// all of your content.
-        /// </summary>
         protected override void LoadContent()
         {
-            // Create a new SpriteBatch, which can be used to draw textures.
-            spriteBatch = new SpriteBatch(GraphicsDevice);
+            _spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            font1 = DynamicSpriteFont.FromTtf(GetManifestResourceStream("simsun.ttf"), 20);
+            _font = DynamicSpriteFont.FromTtf(GetManifestResourceStream("simsun.ttf"), 50);
 
             whitePixel = new Texture2D(GraphicsDevice, 1, 1);
-            whitePixel.SetData<Color>(new Color[] { Color.White });
+            whitePixel.SetData(new Color[] { Color.White });
         }
 
-        /// <summary>
-        /// UnloadContent will be called once per game and is the place to unload
-        /// game-specific content.
-        /// </summary>
-        protected override void UnloadContent()
-        {
-            // TODO: Unload any non ContentManager content here
-        }
-
-        /// <summary>
-        /// Allows the game to run logic such as updating the world,
-        /// checking for collisions, gathering input, and playing audio.
-        /// </summary>
-        /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
@@ -136,30 +102,25 @@ namespace MonoGame.IMEHelper.Android.Test
                 }
             }
 
-            //imeHandler.Update(gameTime);
-
             base.Update(gameTime);
         }
 
-        /// <summary>
-        /// This is called when the game should draw itself.
-        /// </summary>
-        /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
-            spriteBatch.Begin();
 
-            Vector2 len = font1.MeasureString(inputContent.Trim());
+            _spriteBatch.Begin();
 
-            spriteBatch.DrawString(font1, "µ„ª˜∆¡ƒª ∆Ù”√ / Õ£”√ IME", new Vector2(10, 10), Color.White);
-            spriteBatch.DrawString(font1, inputContent, new Vector2(10, 30), Color.White);
+            Vector2 len = _font.MeasureString(inputContent.Trim());
 
-            Vector2 drawPos = new Vector2(15 + len.X, 30);
-            Vector2 measStr = new Vector2(0, font1.MeasureString("|").Y);
-            Color compColor = Color.White;
+            _spriteBatch.DrawString(_font, "ÁÇπÂáªÂ±èÂπï ÂêØÁî® / ÂÅúÁî® IME", new Vector2(10, 10), Color.White);
+            _spriteBatch.DrawString(_font, inputContent, new Vector2(10, 10+50+5), Color.White);
 
-            spriteBatch.End();
+            Vector2 drawPos = new Vector2(5 + len.X, 10+50+5);
+
+            _spriteBatch.DrawString(_font, "|", drawPos, Color.White);
+
+            _spriteBatch.End();
 
             base.Draw(gameTime);
         }

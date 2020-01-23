@@ -4,7 +4,8 @@ using Microsoft.Xna.Framework.Input;
 using SpriteFontPlus;
 using System;
 using System.Diagnostics;
-using System.IO;
+using System.Linq;
+using System.Reflection;
 using System.Threading;
 
 namespace MonoGame.IMEHelper.WindowsDX.Test
@@ -48,7 +49,7 @@ namespace MonoGame.IMEHelper.WindowsDX.Test
 
             Exiting += (o,e) =>
             {
-                var mode = DisplayModeHelper.DisplayModes.SupportedDisplayModes["1366x768"];
+                var mode = DisplayModeHelper.DisplayModes.SupportedDisplayModes["1920x1080"];
                 DisplayModeHelper.ResolutionHelper.ChangeResolution(ref mode);
             };
         }
@@ -67,7 +68,7 @@ namespace MonoGame.IMEHelper.WindowsDX.Test
         /// </summary>
         protected override void Initialize()
         {
-            imeHandler = IMEHandler.Create(this, true);
+            imeHandler = IMEHandler.Create(this, false);
 
             imeHandler.TextInput += (s, e) =>
             {
@@ -103,6 +104,20 @@ namespace MonoGame.IMEHelper.WindowsDX.Test
             base.Initialize();
         }
 
+        public static byte[] GetManifestResourceStream(string resourceName)
+        {
+            var assembly = Assembly.GetExecutingAssembly();
+            var resNames = assembly.GetManifestResourceNames();
+
+            var actualResourceName = resNames.First(r => r.EndsWith(resourceName));
+
+            var stream = assembly.GetManifestResourceStream(actualResourceName);
+            byte[] ret = new byte[stream.Length];
+            stream.Read(ret, 0, (int)stream.Length);
+
+            return ret;
+        }
+
         /// <summary>
         /// LoadContent will be called once per game and is the place to load
         /// all of your content.
@@ -112,19 +127,10 @@ namespace MonoGame.IMEHelper.WindowsDX.Test
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            font1 = DynamicSpriteFont.FromTtf(File.ReadAllBytes(@"Content\simsun.ttf"), 20);
+            font1 = DynamicSpriteFont.FromTtf(GetManifestResourceStream("simsun.ttf"), 30);
 
             whitePixel = new Texture2D(GraphicsDevice, 1, 1);
             whitePixel.SetData<Color>(new Color[] { Color.White });
-        }
-
-        /// <summary>
-        /// UnloadContent will be called once per game and is the place to unload
-        /// game-specific content.
-        /// </summary>
-        protected override void UnloadContent()
-        {
-            // TODO: Unload any non ContentManager content here
         }
 
         /// <summary>
@@ -164,9 +170,9 @@ namespace MonoGame.IMEHelper.WindowsDX.Test
             Vector2 len = font1.MeasureString(inputContent);
 
             spriteBatch.DrawString(font1, "按下 F1 启用 / 停用 IME", new Vector2(10, 10), Color.White);
-            spriteBatch.DrawString(font1, inputContent, new Vector2(10, 30), Color.White);
+            spriteBatch.DrawString(font1, inputContent, new Vector2(10, 50), Color.White);
 
-            Vector2 drawPos = new Vector2(15 + len.X, 30);
+            Vector2 drawPos = new Vector2(15 + len.X, 50);
             Vector2 measStr = new Vector2(0, font1.MeasureString("|").Y);
             Color compColor = Color.White;
 
@@ -205,10 +211,17 @@ namespace MonoGame.IMEHelper.WindowsDX.Test
                 if (imeHandler.Candidates[i][0] > UnicodeSimplifiedChineseMax)
                     imeHandler.Candidates[i] = DefaultChar;
 
-                spriteBatch.DrawString(font1,
-                    String.Format("{0}.{1}", i + 1 - imeHandler.CandidatesPageStart, imeHandler.Candidates[i]),
-                    new Vector2(15 + len.X, 50 + (i - imeHandler.CandidatesPageStart) * 20),
-                    i == imeHandler.CandidatesSelection ? Color.Yellow : Color.White);
+                try
+                {
+                    spriteBatch.DrawString(font1,
+                        String.Format("{0}.{1}", i + 1 - imeHandler.CandidatesPageStart, imeHandler.Candidates[i]),
+                        new Vector2(15 + len.X, 25 + 50 + (i - imeHandler.CandidatesPageStart) * 20),
+                        i == imeHandler.CandidatesSelection ? Color.Yellow : Color.White);
+                }
+                catch
+                {
+                    Trace.WriteLine($"Candidate string {imeHandler.Candidates[i]} has invalid codepoint in current font.");
+                }
             }
 
             spriteBatch.End();

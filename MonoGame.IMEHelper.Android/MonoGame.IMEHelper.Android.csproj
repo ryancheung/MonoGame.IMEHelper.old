@@ -5,7 +5,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{53C49AAB-AC13-4A8B-BF2A-67A15673C3B0}</ProjectGuid>
+    <ProjectGuid>{4BABFCC4-C139-42C6-AE08-CF441575830C}</ProjectGuid>
     <ProjectTypeGuids>{EFBA0AD7-5A72-4C68-AF49-83D382785DCF};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <TemplateGuid>{9ef11e43-1701-4396-8835-8392d57abb70}</TemplateGuid>
     <OutputType>Library</OutputType>
@@ -13,12 +13,12 @@
     <RootNamespace>MonoGame.IMEHelper</RootNamespace>
     <AssemblyName>MonoGame.IMEHelper</AssemblyName>
     <FileAlignment>512</FileAlignment>
+    <Deterministic>True</Deterministic>
     <AndroidResgenFile>Resources\Resource.designer.cs</AndroidResgenFile>
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
     <AndroidUseLatestPlatformSdk>false</AndroidUseLatestPlatformSdk>
     <TargetFrameworkVersion>v4.4</TargetFrameworkVersion>
-    <NuGetPackageImportStamp>
-    </NuGetPackageImportStamp>
+    <AndroidUseAapt2>true</AndroidUseAapt2>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -28,10 +28,9 @@
     <DefineConstants>TRACE;DEBUG;ANDROID</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
+    <DebugType>portable</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
     <DefineConstants>TRACE;ANDROID</DefineConstants>

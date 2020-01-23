@@ -6,11 +6,11 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("MonoGame.IMEHelper.iOS")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("IME Helper for MonoGame iOS platform")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("MonoGame.IMEHelper.iOS")]
-[assembly: AssemblyCopyright("Copyright ©  2019 ryancheung")]
+[assembly: AssemblyCopyright("Copyright ©  2020 ryancheung")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

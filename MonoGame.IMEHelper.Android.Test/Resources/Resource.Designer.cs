@@ -9,9 +9,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: global::Android.Runtime.ResourceDesignerAttribute("MonoGame.IMEHelper.Android.Test.Resource", IsApplication=true)]
+[assembly: global::Android.Runtime.ResourceDesignerAttribute("MonoGame.IMEHelper.Core.Android.Test.Resource", IsApplication=true)]
 
-namespace MonoGame.IMEHelper.Android.Test
+namespace MonoGame.IMEHelper.Core.Android.Test
 {
 	
 	
@@ -26,8 +26,8 @@ namespace MonoGame.IMEHelper.Android.Test
 		
 		public static void UpdateIdValues()
 		{
-			global::MonoGame.IMEHelper.Resource.String.app_name = global::MonoGame.IMEHelper.Android.Test.Resource.String.app_name;
-			global::MonoGame.IMEHelper.Resource.String.hello = global::MonoGame.IMEHelper.Android.Test.Resource.String.hello;
+			global::MonoGame.IMEHelper.Resource.String.app_name = global::MonoGame.IMEHelper.Core.Android.Test.Resource.String.app_name;
+			global::MonoGame.IMEHelper.Resource.String.hello = global::MonoGame.IMEHelper.Core.Android.Test.Resource.String.hello;
 		}
 		
 		public partial class Attribute
@@ -46,11 +46,8 @@ namespace MonoGame.IMEHelper.Android.Test
 		public partial class Drawable
 		{
 			
-			// aapt resource value: 0x7f020000
-			public const int Icon = 2130837504;
-			
-			// aapt resource value: 0x7f020001
-			public const int Splash = 2130837505;
+			// aapt resource value: 0x7F010000
+			public const int Icon = 2130771968;
 			
 			static Drawable()
 			{
@@ -65,17 +62,11 @@ namespace MonoGame.IMEHelper.Android.Test
 		public partial class String
 		{
 			
-			// aapt resource value: 0x7f030003
-			public const int ApplicationName = 2130903043;
+			// aapt resource value: 0x7F020000
+			public const int app_name = 2130837504;
 			
-			// aapt resource value: 0x7f030002
-			public const int Hello = 2130903042;
-			
-			// aapt resource value: 0x7f030001
-			public const int app_name = 2130903041;
-			
-			// aapt resource value: 0x7f030000
-			public const int hello = 2130903040;
+			// aapt resource value: 0x7F020001
+			public const int hello = 2130837505;
 			
 			static String()
 			{
@@ -83,22 +74,6 @@ namespace MonoGame.IMEHelper.Android.Test
 			}
 			
 			private String()
-			{
-			}
-		}
-		
-		public partial class Style
-		{
-			
-			// aapt resource value: 0x7f040000
-			public const int Theme_Splash = 2130968576;
-			
-			static Style()
-			{
-				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
-			}
-			
-			private Style()
 			{
 			}
 		}

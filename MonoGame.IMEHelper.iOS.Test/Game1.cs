@@ -84,7 +84,7 @@ namespace MonoGame.IMEHelper.iOS
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            font1 = DynamicSpriteFont.FromTtf(GetManifestResourceStream("simsun.ttf"), 20);
+            font1 = DynamicSpriteFont.FromTtf(GetManifestResourceStream("simsun.ttf"), 50);
 
             whitePixel = new Texture2D(GraphicsDevice, 1, 1);
             whitePixel.SetData<Color>(new Color[] { Color.White });
@@ -136,8 +136,8 @@ namespace MonoGame.IMEHelper.iOS
 
             spriteBatch.DrawString(font1, "点击屏幕 启用 / 停用 IME", new Vector2(10, 10), Color.White);
             spriteBatch.DrawString(font1, string.Format("Virtual Keyboard Height: {0}", imeHandler.VirtualKeyboardHeight),
-                new Vector2(10, 30), Color.White);
-            spriteBatch.DrawString(font1, inputContent, new Vector2(10, 60), Color.White);
+                new Vector2(10, 5+50), Color.White);
+            spriteBatch.DrawString(font1, inputContent, new Vector2(10, 5+50+50), Color.White);
 
             Vector2 drawPos = new Vector2(15 + len.X, 60);
             Vector2 measStr = new Vector2(0, font1.MeasureString("|").Y);

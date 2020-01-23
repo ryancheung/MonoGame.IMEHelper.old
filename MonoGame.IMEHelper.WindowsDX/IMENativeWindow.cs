@@ -147,6 +147,7 @@ namespace MonoGame.IMEHelper
         {
             IsEnabled = true;
 
+            IMM.DestroyCaret();
             IMM.CreateCaret(Handle, IntPtr.Zero, 1, 1);
 
             _context = IMM.ImmGetContext(Handle);
@@ -312,7 +313,7 @@ namespace MonoGame.IMEHelper
                     for (int i = 0; i < cList.dwCount; i++)
                     {
                         int sOffset = Marshal.ReadInt32(pointer, 24 + 4 * i);
-                        Candidates[i] = Marshal.PtrToStringUni((IntPtr)(pointer.ToInt32() + sOffset));
+                        Candidates[i] = Marshal.PtrToStringUni(pointer + sOffset);
                     }
 
                     _imeHandler.OnTextComposition(CompositionString, CompositionCursorPos, new CandidateList {

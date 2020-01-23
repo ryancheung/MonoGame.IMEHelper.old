@@ -3,6 +3,8 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using SpriteFontPlus;
 using System.IO;
+using System.Linq;
+using System.Reflection;
 
 namespace MonoGame.IMEHelper.DesktopGL.Test
 {
@@ -28,14 +30,6 @@ namespace MonoGame.IMEHelper.DesktopGL.Test
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
-
-            graphics.PreparingDeviceSettings += Graphics_PreparingDeviceSettings;
-        }
-
-        private void Graphics_PreparingDeviceSettings(object sender, PreparingDeviceSettingsEventArgs e)
-        {
-            e.GraphicsDeviceInformation.PresentationParameters.HardwareModeSwitch = false;
-            e.GraphicsDeviceInformation.PresentationParameters.IsFullScreen = true;
         }
 
         /// <summary>
@@ -74,6 +68,20 @@ namespace MonoGame.IMEHelper.DesktopGL.Test
             base.Initialize();
         }
 
+        public static byte[] GetManifestResourceStream(string resourceName)
+        {
+            var assembly = Assembly.GetExecutingAssembly();
+            var resNames = assembly.GetManifestResourceNames();
+
+            var actualResourceName = resNames.First(r => r.EndsWith(resourceName));
+
+            var stream = assembly.GetManifestResourceStream(actualResourceName);
+            byte[] ret = new byte[stream.Length];
+            stream.Read(ret, 0, (int)stream.Length);
+
+            return ret;
+        }
+
         /// <summary>
         /// LoadContent will be called once per game and is the place to load
         /// all of your content.
@@ -83,19 +91,10 @@ namespace MonoGame.IMEHelper.DesktopGL.Test
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            font1 = DynamicSpriteFont.FromTtf(File.ReadAllBytes(@"Content\simsun.ttf"), 20);
+            font1 = DynamicSpriteFont.FromTtf(GetManifestResourceStream("simsun.ttf"), 30);
 
             whitePixel = new Texture2D(GraphicsDevice, 1, 1);
             whitePixel.SetData<Color>(new Color[] { Color.White });
-        }
-
-        /// <summary>
-        /// UnloadContent will be called once per game and is the place to unload
-        /// game-specific content.
-        /// </summary>
-        protected override void UnloadContent()
-        {
-            // TODO: Unload any non ContentManager content here
         }
 
         /// <summary>
@@ -135,7 +134,7 @@ namespace MonoGame.IMEHelper.DesktopGL.Test
             Vector2 len = font1.MeasureString(inputContent.Trim());
 
             spriteBatch.DrawString(font1, "按下 F1 启用 / 停用 IME", new Vector2(10, 10), Color.White);
-            spriteBatch.DrawString(font1, inputContent, new Vector2(10, 30), Color.White);
+            spriteBatch.DrawString(font1, inputContent, new Vector2(10, 10+30), Color.White);
 
             Vector2 drawPos = new Vector2(15 + len.X, 30);
             Vector2 measStr = new Vector2(0, font1.MeasureString("|").Y);

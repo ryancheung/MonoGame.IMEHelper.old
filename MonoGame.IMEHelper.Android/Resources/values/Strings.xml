@@ -1,4 +1,4 @@
 <resources>
     <string name="hello">Hello World, Click Me!</string>
-    <string name="app_name">MonoGame.IMEHelper.Android</string>
+    <string name="app_name">MonoGame.IMEHelper.Core.Android</string>
 </resources>
