@@ -13,7 +13,8 @@ namespace MonoGame.IMEHelper
             var ret = IntPtr.Zero;
 
             // Load bundled library
-            var assemblyLocation = Path.GetDirectoryName(typeof(Sdl).Assembly.Location);
+            var assemblyLocation = Path.GetDirectoryName(typeof(Sdl).Assembly.Location) ?? "./";
+
             if (CurrentPlatform.OS == OS.Windows && Environment.Is64BitProcess)
                 ret = FuncLoader.LoadLibrary(Path.Combine(assemblyLocation, "x64/SDL2.dll"));
             else if (CurrentPlatform.OS == OS.Windows && !Environment.Is64BitProcess)
@@ -34,6 +35,26 @@ namespace MonoGame.IMEHelper
                     ret = FuncLoader.LoadLibrary("libSDL2-2.0.so.0");
                 else
                     ret = FuncLoader.LoadLibrary("libSDL2-2.0.0.dylib");
+            }
+
+            // Try extra locations for Windows because of .NET Core rids
+            if (CurrentPlatform.OS == OS.Windows)
+            {
+                var rid = Environment.Is64BitProcess ? "win-x64" : "win-x86";
+
+                if (ret == IntPtr.Zero)
+                    ret = FuncLoader.LoadLibrary(Path.Combine(assemblyLocation, "../../runtimes", rid, "native/SDL2.dll"));
+
+                if (ret == IntPtr.Zero)
+                    ret = FuncLoader.LoadLibrary(Path.Combine(assemblyLocation, "runtimes", rid, "native/SDL2.dll"));
+            }
+            else if (CurrentPlatform.OS == OS.MacOSX)
+            {
+                if (ret == IntPtr.Zero)
+                    ret = FuncLoader.LoadLibrary(Path.Combine(assemblyLocation, "../../runtimes", "osx", "native/libSDL2-2.0.0.dylib"));
+
+                if (ret == IntPtr.Zero)
+                    ret = FuncLoader.LoadLibrary(Path.Combine(assemblyLocation, "runtimes", "osx", "native/libSDL2-2.0.0.dylib"));
             }
 
             // Welp, all failed, PANIC!!!
