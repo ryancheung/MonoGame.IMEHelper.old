@@ -19,6 +19,26 @@ private void PackProject(string filePath)
     MSBuild(filePath, msPackSettings);
 }
 
+private bool GetMSBuildWith(string requires)
+{
+    if (IsRunningOnWindows())
+    {
+        DirectoryPath vsLatest = VSWhereLatest(new VSWhereLatestSettings { Requires = requires });
+
+        if (vsLatest != null)
+        {
+            var files = GetFiles(vsLatest.FullPath + "/**/MSBuild.exe");
+            if (files.Any())
+            {
+                msPackSettings.ToolPath = files.First();
+                return true;
+            }
+        }
+    }
+
+    return false;
+}
+
 //////////////////////////////////////////////////////////////////////
 // TASKS
 //////////////////////////////////////////////////////////////////////
@@ -74,9 +94,24 @@ Task("BuildWindowsDX")
     PackProject("MonoGame.IMEHelper.WindowsDX/MonoGame.IMEHelper.WindowsDX.csproj");
 });
 
+Task("BuildAndroid")
+    .IsDependentOn("Prep")
+    .WithCriteria(() =>
+{
+    if (IsRunningOnWindows())
+        return GetMSBuildWith("Component.Xamarin");
+
+    return DirectoryExists("/Library/Frameworks/Xamarin.Android.framework");
+}).Does(() =>
+{
+    DotNetCoreRestore("MonoGame.IMEHelper.Android/MonoGame.IMEHelper.Android.csproj");
+    PackProject("MonoGame.IMEHelper.Android/MonoGame.IMEHelper.Android.csproj");
+});
+
 Task("Default")
     .IsDependentOn("BuildCommon")
     .IsDependentOn("BuildDesktopGL")
+    .IsDependentOn("BuildAndroid")
     .IsDependentOn("BuildWindowsDX");
 
 //////////////////////////////////////////////////////////////////////
