@@ -33,6 +33,7 @@ Task("Prep")
     msPackSettings.Configuration = configuration;
     msPackSettings.WithProperty("Version", version);
     msPackSettings.WithTarget("Pack");
+    msPackSettings.UseToolVersion(MSBuildToolVersion.VS2019);
 
     mdPackSettings = new MSBuildSettings();
     mdPackSettings.Verbosity = Verbosity.Minimal;
