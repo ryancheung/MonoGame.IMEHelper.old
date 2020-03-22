@@ -24,14 +24,14 @@ namespace MonoGame.IMEHelper
         public Rect KeyboardRect { get; private set; } = new AG.Rect();
         public int KeyboardHeight { get { return KeyboardRect.Height(); } }
 
-        public void OnGlobalLayout()
+        public virtual void OnGlobalLayout()
         {
             WindowManager.DefaultDisplay.GetSize(ScreenSize);
             Window.DecorView.GetWindowVisibleDisplayFrame(KeyboardRect);
         }
     }
 
-    internal class AndroidIMEHandler : IMEHandler
+    public class AndroidIMEHandler : IMEHandler
     {
         private const int IME_FLAG_NO_EXTRACT_UI = 0x10000000;
 
@@ -83,8 +83,7 @@ namespace MonoGame.IMEHelper
 
         private void EditText_TextChanged(object sender, TextChangedEventArgs e)
         {
-            string resultText = KeyboardUtil.RemoveInvalidCharacter(e.Text.ToString());
-            foreach (var c in resultText)
+            foreach (var c in e.Text)
                 OnTextInput(new TextInputEventArgs(c, KeyboardUtil.ToXna(c)));
 
             editText.TextChanged -= EditText_TextChanged;

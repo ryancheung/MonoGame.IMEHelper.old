@@ -1,12 +1,12 @@
-﻿using Microsoft.Xna.Framework;
-using System;
+﻿using System;
+using Microsoft.Xna.Framework;
 
 namespace MonoGame.IMEHelper
 {
     /// <summary>
     /// Integrate IME to DesktopGL(SDL2) platform.
     /// </summary>
-    internal class SdlIMEHandler : IMEHandler
+    public class SdlIMEHandler : IMEHandler
     {
         public SdlIMEHandler(Game game, bool showDefaultIMEWindow = false) : base(game, showDefaultIMEWindow)
         {
@@ -21,7 +21,7 @@ namespace MonoGame.IMEHelper
 
         private void Window_TextInput(object sender, Microsoft.Xna.Framework.TextInputEventArgs e)
         {
-            OnTextInput(TextInputEventArgs.FromSDLEvent(e));
+            OnTextInput(new TextInputEventArgs(e.Character, e.Key));
         }
 
         public override void StartTextComposition()

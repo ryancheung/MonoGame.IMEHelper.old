@@ -14,24 +14,19 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonoGame.IMEHelper.Android.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonoGame.IMEHelper.iOS", "MonoGame.IMEHelper.iOS\MonoGame.IMEHelper.iOS.csproj", "{74DD5D92-4F34-492D-9E99-B18439CC2966}"
 EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "MonoGame.IMEHelper.Common", "MonoGame.IMEHelper.Common\MonoGame.IMEHelper.Common.shproj", "{A0CDBD0E-3A41-42B7-9425-A838BC2C7383}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonoGame.IMEHelper.iOS.Test", "MonoGame.IMEHelper.iOS.Test\MonoGame.IMEHelper.iOS.Test.csproj", "{F0828DE1-FA02-4D08-B90A-950E0B354E2A}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MonoGame.IMEHelper.DesktopGL", "MonoGame.IMEHelper.DesktopGL\MonoGame.IMEHelper.DesktopGL.csproj", "{D7D75CFF-76E4-4D90-99D2-ECEBF57C49BF}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MonoGame.IMEHelper.DesktopGL.Test", "MonoGame.IMEHelper.DesktopGL.Test\MonoGame.IMEHelper.DesktopGL.Test.csproj", "{36F1BB39-7A83-4B17-9E3D-0F1AA1E3E55B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonoGame.IMEHelper.WindowsDX", "MonoGame.IMEHelper.WindowsDX\MonoGame.IMEHelper.WindowsDX.csproj", "{891BA6E8-989E-41F9-926C-10CE583A7D31}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MonoGame.IMEHelper.WindowsDX", "MonoGame.IMEHelper.WindowsDX\MonoGame.IMEHelper.WindowsDX.csproj", "{891BA6E8-989E-41F9-926C-10CE583A7D31}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonoGame.IMEHelper.WindowsDX.Test", "MonoGame.IMEHelper.WindowsDX.Test\MonoGame.IMEHelper.WindowsDX.Test.csproj", "{FC2EEDBD-D8F2-4CF5-9402-FBC4F6FA9CDC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MonoGame.IMEHelper.WindowsDX.Test", "MonoGame.IMEHelper.WindowsDX.Test\MonoGame.IMEHelper.WindowsDX.Test.csproj", "{FC2EEDBD-D8F2-4CF5-9402-FBC4F6FA9CDC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonoGame.IMEHelper.Common", "MonoGame.IMEHelper.Common\MonoGame.IMEHelper.Common.csproj", "{FCAD64D5-7AA7-4D51-8C64-4DD0D947B054}"
 EndProject
 Global
-	GlobalSection(SharedMSBuildProjectFiles) = preSolution
-		MonoGame.IMEHelper.Common\MonoGame.IMEHelper.Common.projitems*{4babfcc4-c139-42c6-ae08-cf441575830c}*SharedItemsImports = 4
-		MonoGame.IMEHelper.Common\MonoGame.IMEHelper.Common.projitems*{74dd5d92-4f34-492d-9e99-b18439cc2966}*SharedItemsImports = 4
-		MonoGame.IMEHelper.Common\MonoGame.IMEHelper.Common.projitems*{a0cdbd0e-3a41-42b7-9425-a838bc2c7383}*SharedItemsImports = 13
-	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Ad-Hoc|Any CPU = Ad-Hoc|Any CPU
 		Ad-Hoc|iPhone = Ad-Hoc|iPhone
@@ -383,6 +378,46 @@ Global
 		{FC2EEDBD-D8F2-4CF5-9402-FBC4F6FA9CDC}.Release|x64.Build.0 = Release|Any CPU
 		{FC2EEDBD-D8F2-4CF5-9402-FBC4F6FA9CDC}.Release|x86.ActiveCfg = Release|Any CPU
 		{FC2EEDBD-D8F2-4CF5-9402-FBC4F6FA9CDC}.Release|x86.Build.0 = Release|Any CPU
+		{FCAD64D5-7AA7-4D51-8C64-4DD0D947B054}.Ad-Hoc|Any CPU.ActiveCfg = Debug|Any CPU
+		{FCAD64D5-7AA7-4D51-8C64-4DD0D947B054}.Ad-Hoc|Any CPU.Build.0 = Debug|Any CPU
+		{FCAD64D5-7AA7-4D51-8C64-4DD0D947B054}.Ad-Hoc|iPhone.ActiveCfg = Debug|Any CPU
+		{FCAD64D5-7AA7-4D51-8C64-4DD0D947B054}.Ad-Hoc|iPhone.Build.0 = Debug|Any CPU
+		{FCAD64D5-7AA7-4D51-8C64-4DD0D947B054}.Ad-Hoc|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{FCAD64D5-7AA7-4D51-8C64-4DD0D947B054}.Ad-Hoc|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{FCAD64D5-7AA7-4D51-8C64-4DD0D947B054}.Ad-Hoc|x64.ActiveCfg = Debug|Any CPU
+		{FCAD64D5-7AA7-4D51-8C64-4DD0D947B054}.Ad-Hoc|x64.Build.0 = Debug|Any CPU
+		{FCAD64D5-7AA7-4D51-8C64-4DD0D947B054}.Ad-Hoc|x86.ActiveCfg = Debug|Any CPU
+		{FCAD64D5-7AA7-4D51-8C64-4DD0D947B054}.Ad-Hoc|x86.Build.0 = Debug|Any CPU
+		{FCAD64D5-7AA7-4D51-8C64-4DD0D947B054}.AppStore|Any CPU.ActiveCfg = Debug|Any CPU
+		{FCAD64D5-7AA7-4D51-8C64-4DD0D947B054}.AppStore|Any CPU.Build.0 = Debug|Any CPU
+		{FCAD64D5-7AA7-4D51-8C64-4DD0D947B054}.AppStore|iPhone.ActiveCfg = Debug|Any CPU
+		{FCAD64D5-7AA7-4D51-8C64-4DD0D947B054}.AppStore|iPhone.Build.0 = Debug|Any CPU
+		{FCAD64D5-7AA7-4D51-8C64-4DD0D947B054}.AppStore|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{FCAD64D5-7AA7-4D51-8C64-4DD0D947B054}.AppStore|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{FCAD64D5-7AA7-4D51-8C64-4DD0D947B054}.AppStore|x64.ActiveCfg = Debug|Any CPU
+		{FCAD64D5-7AA7-4D51-8C64-4DD0D947B054}.AppStore|x64.Build.0 = Debug|Any CPU
+		{FCAD64D5-7AA7-4D51-8C64-4DD0D947B054}.AppStore|x86.ActiveCfg = Debug|Any CPU
+		{FCAD64D5-7AA7-4D51-8C64-4DD0D947B054}.AppStore|x86.Build.0 = Debug|Any CPU
+		{FCAD64D5-7AA7-4D51-8C64-4DD0D947B054}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FCAD64D5-7AA7-4D51-8C64-4DD0D947B054}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FCAD64D5-7AA7-4D51-8C64-4DD0D947B054}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{FCAD64D5-7AA7-4D51-8C64-4DD0D947B054}.Debug|iPhone.Build.0 = Debug|Any CPU
+		{FCAD64D5-7AA7-4D51-8C64-4DD0D947B054}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{FCAD64D5-7AA7-4D51-8C64-4DD0D947B054}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{FCAD64D5-7AA7-4D51-8C64-4DD0D947B054}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{FCAD64D5-7AA7-4D51-8C64-4DD0D947B054}.Debug|x64.Build.0 = Debug|Any CPU
+		{FCAD64D5-7AA7-4D51-8C64-4DD0D947B054}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{FCAD64D5-7AA7-4D51-8C64-4DD0D947B054}.Debug|x86.Build.0 = Debug|Any CPU
+		{FCAD64D5-7AA7-4D51-8C64-4DD0D947B054}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FCAD64D5-7AA7-4D51-8C64-4DD0D947B054}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FCAD64D5-7AA7-4D51-8C64-4DD0D947B054}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{FCAD64D5-7AA7-4D51-8C64-4DD0D947B054}.Release|iPhone.Build.0 = Release|Any CPU
+		{FCAD64D5-7AA7-4D51-8C64-4DD0D947B054}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{FCAD64D5-7AA7-4D51-8C64-4DD0D947B054}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
+		{FCAD64D5-7AA7-4D51-8C64-4DD0D947B054}.Release|x64.ActiveCfg = Release|Any CPU
+		{FCAD64D5-7AA7-4D51-8C64-4DD0D947B054}.Release|x64.Build.0 = Release|Any CPU
+		{FCAD64D5-7AA7-4D51-8C64-4DD0D947B054}.Release|x86.ActiveCfg = Release|Any CPU
+		{FCAD64D5-7AA7-4D51-8C64-4DD0D947B054}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

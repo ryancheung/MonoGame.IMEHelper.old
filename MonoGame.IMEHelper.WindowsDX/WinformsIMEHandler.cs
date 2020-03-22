@@ -6,7 +6,7 @@ namespace MonoGame.IMEHelper
     /// <summary>
     /// Integrate IME to XNA framework.
     /// </summary>
-    internal class WinFormsIMEHandler : IMEHandler, IDisposable
+    public class WinFormsIMEHandler : IMEHandler, IDisposable
     {
         private IMENativeWindow _nativeWnd;
 

@@ -15,11 +15,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-     <PackageReference Include="MonoGame.Framework.DesktopGL.Core" Version="3.8.0.2">
+     <PackageReference Include="MonoGame.Framework.DesktopGL.Core" Version="3.8.0.12">
       <PrivateAssets>All</PrivateAssets>
     </PackageReference>
   </ItemGroup>
 
-  <Import Project="..\MonoGame.IMEHelper.Common\MonoGame.IMEHelper.Common.projitems" Label="Shared" />
+  <ItemGroup>
+    <ProjectReference Include="..\MonoGame.IMEHelper.Common\MonoGame.IMEHelper.Common.csproj" />
+  </ItemGroup>
 
 </Project>

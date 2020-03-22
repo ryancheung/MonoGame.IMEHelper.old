@@ -40,7 +40,7 @@ namespace MonoGame.IMEHelper.DesktopGL.Test
         /// </summary>
         protected override void Initialize()
         {
-            imeHandler = IMEHandler.Create(this, true);
+            imeHandler = new SdlIMEHandler(this, true);
 
             imeHandler.TextInput += (s, e) =>
             {

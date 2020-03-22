@@ -57,7 +57,7 @@ namespace MonoGame.IMEHelper
         }
     }
 
-    internal class IosIMEHandler : IMEHandler
+    public class IosIMEHandler : IMEHandler
     {
         private UIWindow mainWindow;
         private UIViewController gameViewController;
@@ -108,8 +108,7 @@ namespace MonoGame.IMEHelper
 
         private void TextField_TextChanged(object sender, EventArgs e)
         {
-            string resultText = KeyboardUtil.RemoveInvalidCharacter(textField.Text);
-            foreach (var c in resultText)
+            foreach (var c in textField.Text)
                 OnTextInput(new TextInputEventArgs(c, KeyboardUtil.ToXna(c)));
 
             textField.Text = string.Empty;

@@ -1,0 +1,13 @@
+<Project>
+
+  <PropertyGroup>
+    <ProjectPlatform>Common</ProjectPlatform>
+    <BaseOutputPath>..\Artifacts\$(ProjectPlatform)</BaseOutputPath>
+    <OutputPath>..\Artifacts\$(ProjectPlatform)</OutputPath>
+    <RootNamespace>MonoGame.IMEHelper</RootNamespace>
+    <AssemblyName>MonoGame.IMEHelper.Common</AssemblyName>
+
+    <LangVersion>latest</LangVersion>
+  </PropertyGroup>
+
+</Project>

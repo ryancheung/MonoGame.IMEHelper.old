@@ -38,7 +38,7 @@ namespace MonoGame.IMEHelper.iOS
         /// </summary>
         protected override void Initialize()
         {
-            imeHandler = IMEHandler.Create(this, true);
+            imeHandler = new IosIMEHandler(this, true);
 
             imeHandler.TextInput += (s, e) =>
             {

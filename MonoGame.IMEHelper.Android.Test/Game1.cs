@@ -33,7 +33,7 @@ namespace MonoGame.IMEHelper.Android.Test
 
         protected override void Initialize()
         {
-            imeHandler = IMEHandler.Create(this, true);
+            imeHandler = new AndroidIMEHandler(this, true);
 
             imeHandler.TextInput += (s, e) =>
             {

@@ -1,49 +1,30 @@
-﻿#region Using Statements
-using System;
-
+﻿using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 
-#endregion
-
 namespace MonoGame.IMEHelper
 {
-    /// <summary>
-    /// Composition Character Attributes
-    /// </summary>
-    public enum CompositionAttributes
-    {
-        /// <summary>
-        /// Character being entered by the user.
-        /// The IME has yet to convert this character.
-        /// </summary>
-        Input = 0x00,
-        /// <summary>
-        /// Character selected by the user and then converted by the IME.
-        /// </summary>
-        TargetConverted = 0x01,
-        /// <summary>
-        /// Character that the IME has already converted.
-        /// </summary>
-        Converted = 0x02,
-        /// <summary>
-        /// Character being converted. The user has selected this character
-        /// but the IME has not yet converted it.
-        /// </summary>
-        TargetNotConverted = 0x03,
-        /// <summary>
-        /// An error character that the IME cannot convert. For example,
-        /// the IME cannot put together some consonants.
-        /// </summary>
-        InputError = 0x04,
-        /// <summary>
-        /// Characters that the IME will no longer convert.
-        /// </summary>
-        FixedConverted = 0x05,
-    }
-
     public abstract class IMEHandler
     {
+        public static IMEHandler _ImplInstance;
+        public static IMEHandler ImplInstance
+        {
+            get
+            {
+                if (_ImplInstance == null)
+                    throw new NotImplementedException("Muset set `IMEHandler.ImplInstance` to an implementation instance.");
+
+                return _ImplInstance;
+            }
+            set
+            {
+                if (_ImplInstance != null)
+                    return;
+
+                _ImplInstance = value;
+            }
+        }
+
         /// <summary>
         /// Game Instance
         /// </summary>
@@ -56,21 +37,6 @@ namespace MonoGame.IMEHelper
             this.ShowDefaultIMEWindow = showDefaultIMEWindow;
 
             PlatformInitialize();
-        }
-
-        public static IMEHandler Create(Game game, bool showDefaultIMEWindow = false)
-        {
-#if WINDOWSDX
-            return new WinFormsIMEHandler(game, showDefaultIMEWindow);
-#elif DESKTOPGL
-            return new SdlIMEHandler(game, showDefaultIMEWindow);
-#elif ANDROID
-            return new AndroidIMEHandler(game, showDefaultIMEWindow);
-#elif IOS
-            return new IosIMEHandler(game, showDefaultIMEWindow);
-#else
-            return new WinFormsIMEHandler(game, showDefaultIMEWindow);
-#endif
         }
 
         /// <summary>

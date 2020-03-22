@@ -32,33 +32,8 @@ namespace MonoGame.IMEHelper.WindowsDX.Test
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
-
-            graphics.PreparingDeviceSettings += Graphics_PreparingDeviceSettings;
-
-            Activated += (o, e) =>
-            {
-                var mode = DisplayModeHelper.DisplayModes.SupportedDisplayModes["1366x768"];
-                DisplayModeHelper.ResolutionHelper.ChangeResolution(ref mode);
-            };
-
-            Deactivated += (o,e) =>
-            {
-                var mode = DisplayModeHelper.DisplayModes.SupportedDisplayModes["1920x1080"];
-                DisplayModeHelper.ResolutionHelper.ChangeResolution(ref mode);
-            };
-
-            Exiting += (o,e) =>
-            {
-                var mode = DisplayModeHelper.DisplayModes.SupportedDisplayModes["1920x1080"];
-                DisplayModeHelper.ResolutionHelper.ChangeResolution(ref mode);
-            };
         }
 
-        private void Graphics_PreparingDeviceSettings(object sender, PreparingDeviceSettingsEventArgs e)
-        {
-            e.GraphicsDeviceInformation.PresentationParameters.HardwareModeSwitch = false;
-            e.GraphicsDeviceInformation.PresentationParameters.IsFullScreen = true;
-        }
 
         /// <summary>
         /// Allows the game to perform any initialization it needs to before starting to run.
@@ -68,7 +43,7 @@ namespace MonoGame.IMEHelper.WindowsDX.Test
         /// </summary>
         protected override void Initialize()
         {
-            imeHandler = IMEHandler.Create(this, false);
+            imeHandler = new WinFormsIMEHandler(this, false);
 
             imeHandler.TextInput += (s, e) =>
             {
