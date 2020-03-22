@@ -65,9 +65,18 @@ Task("BuildDesktopGL")
     PackProject("MonoGame.IMEHelper.DesktopGL/MonoGame.IMEHelper.DesktopGL.csproj");
 });
 
+Task("BuildWindowsDX")
+    .IsDependentOn("Prep")
+    .Does(() =>
+{
+    DotNetCoreRestore("MonoGame.IMEHelper.WindowsDX/MonoGame.IMEHelper.WindowsDX.csproj");
+    PackProject("MonoGame.IMEHelper.WindowsDX/MonoGame.IMEHelper.WindowsDX.csproj");
+});
+
 Task("Default")
     .IsDependentOn("BuildCommon")
-    .IsDependentOn("BuildDesktopGL");
+    .IsDependentOn("BuildDesktopGL")
+    .IsDependentOn("BuildWindowsDX");
 
 //////////////////////////////////////////////////////////////////////
 // EXECUTION

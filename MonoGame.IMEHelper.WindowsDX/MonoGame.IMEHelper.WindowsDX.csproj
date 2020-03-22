@@ -17,7 +17,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\MonoGame.IMEHelper.Common\MonoGame.IMEHelper.Common.csproj" />
+     <PackageReference Include="MonoGame.IMEHelper.Common" Version="0.6.0" />
   </ItemGroup>
 
   <ItemGroup>
