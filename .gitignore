@@ -371,4 +371,6 @@ Network Trash Folder
 Temporary Items
 .apdisk
 
-# Project
+# Cake
+tools/**
+!tools/packages.config
