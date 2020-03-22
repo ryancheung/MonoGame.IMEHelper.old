@@ -108,11 +108,20 @@ Task("BuildAndroid")
     PackProject("MonoGame.IMEHelper.Android/MonoGame.IMEHelper.Android.csproj");
 });
 
+Task("BuildiOS")
+    .IsDependentOn("Prep")
+.Does(() =>
+{
+    DotNetCoreRestore("MonoGame.IMEHelper.iOS/MonoGame.IMEHelper.iOS.csproj");
+    PackProject("MonoGame.IMEHelper.iOS/MonoGame.IMEHelper.iOS.csproj");
+});
+
 Task("Default")
     .IsDependentOn("BuildCommon")
     .IsDependentOn("BuildDesktopGL")
+    .IsDependentOn("BuildWindowsDX")
     .IsDependentOn("BuildAndroid")
-    .IsDependentOn("BuildWindowsDX");
+    .IsDependentOn("BuildiOS");
 
 //////////////////////////////////////////////////////////////////////
 // EXECUTION
