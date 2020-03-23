@@ -1,17 +1,15 @@
 ## MonoGame IME Helper for desktop and mobile platforms
 
-### Targeted platforms at the moment
+### Targeted MonoGame platforms
 
-- WindowsDX(Desktop)
-- SDL2(Desktop)
-- Android
-- iOS
+- MonoGame.Framework.WindowsDX
+- MonoGame.Framework.DesktopGL
+- MonoGame.Framework.Android
+- MonoGame.Framework.iOS
 
 ## Getting started
 
 ### NuGet
-
-MonoGame.IMEHelper is available on NuGet. It can be installed by issuing commands like the following command in the package manager console:
 
 ```
 PM> Install-Package MonoGame.IMEHelper.WindowsDX
@@ -20,10 +18,11 @@ PM> Install-Package MonoGame.IMEHelper.WindowsDX
 All available packages for specific platforms:
 
 ```
-MonoGame.IMEHelper.Android
-MonoGame.IMEHelper.DesktopGL
-MonoGame.IMEHelper.iOS
 MonoGame.IMEHelper.WindowsDX
+MonoGame.IMEHelper.DesktopGL
+MonoGame.IMEHelper.Android
+MonoGame.IMEHelper.iOS
+MonoGame.IMEHelper.Common
 ```
 
 ### Initialize a IMEHandler instance in your game Initialize method
@@ -31,22 +30,24 @@ MonoGame.IMEHelper.WindowsDX
 ```c#
 protected override void Initialize()
 {
-   imeHandler = IMEHandler.Create(this);
+   imeHandler = new WinFormsIMEHandle(this);
    imeHandler.TextInput += (s, e) => { ... };
 }
 ```
 
-*Remember to set `showDefaultIMEWindow` to true, `IMEHandler.Create(this. true)` e.g., since rendering Candidate Window in game is bugged and it's bugged in the Windows OS side*
-
 ### If your want to render Composition String
 
 ```#
-   imeHandler = IMEHandler.Create(this, true);
+   imeHandler = new WinFormsIMEHandler(this);
    imeHandler.TextInput += (s, e) => { ... };
    imeHandler.TextComposition += (s, e) => { ... };
 ```
 
-*Note that `TextComposition` event only works on WindowsDX platform due to limitation of the underlying library*
+*Note that `TextComposition` event only works on WindowsDX platform due to limitation of the underlying platform*
+
+### MonoGame.IMEHelper.Common package
+
+If you has used a shared netstandard project to share game code. You can reference the `MonoGame.IMEHelper.Common` package. It's just includes API interfaces and no implementation. Then you add the platform specific package to include the platform IME implementation.
 
 ### Start Text Composition
 
