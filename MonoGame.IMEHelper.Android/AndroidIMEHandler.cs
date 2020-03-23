@@ -20,8 +20,8 @@ namespace MonoGame.IMEHelper
             Instance = this;
         }
 
-        public AG.Point ScreenSize { get; private set; } = new AG.Point();
-        public Rect KeyboardRect { get; private set; } = new AG.Rect();
+        public AG.Point ScreenSize { get; private set; }
+        public Rect KeyboardRect { get; private set; }
         public int KeyboardHeight { get { return KeyboardRect.Height(); } }
 
         public virtual void OnGlobalLayout()

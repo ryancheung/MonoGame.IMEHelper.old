@@ -20,8 +20,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="MonoGame.Framework.Android">
-      <Version>3.7.1.189</Version>
+    <PackageReference Include="MonoGame.Framework.Android" Version="3.7.1.189">
       <PrivateAssets>All</PrivateAssets>
     </PackageReference>
   </ItemGroup>

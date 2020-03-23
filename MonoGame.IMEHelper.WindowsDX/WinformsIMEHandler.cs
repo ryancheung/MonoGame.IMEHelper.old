@@ -49,21 +49,21 @@ namespace MonoGame.IMEHelper
             _nativeWnd.SetTextInputRect(ref rect);
         }
 
-        public override string[] Candidates => _nativeWnd.Candidates;
-        public override uint CandidatesPageSize => _nativeWnd.CandidatesPageSize;
-        public override uint CandidatesPageStart => _nativeWnd.CandidatesPageStart;
-        public override uint CandidatesSelection => _nativeWnd.CandidatesSelection;
+        public override string[] Candidates { get { return _nativeWnd.Candidates; } }
+        public override uint CandidatesPageSize { get { return _nativeWnd.CandidatesPageSize; } }
+        public override uint CandidatesPageStart { get { return _nativeWnd.CandidatesPageStart; } }
+        public override uint CandidatesSelection { get { return _nativeWnd.CandidatesSelection; } }
 
-        public override string Composition => _nativeWnd.CompositionString;
-        public override string CompositionClause => _nativeWnd.CompositionClause;
-        public override string CompositionRead => _nativeWnd.CompositionReadString;
-        public override string CompositionReadClause => _nativeWnd.CompositionReadClause;
-        public override int CompositionCursorPos => _nativeWnd.CompositionCursorPos;
+        public override string Composition { get { return _nativeWnd.CompositionString; } }
+        public override string CompositionClause { get { return _nativeWnd.CompositionClause; } }
+        public override string CompositionRead { get { return _nativeWnd.CompositionReadString; } }
+        public override string CompositionReadClause { get { return _nativeWnd.CompositionReadClause; } }
+        public override int CompositionCursorPos { get { return _nativeWnd.CompositionCursorPos; } }
 
-        public override string Result => _nativeWnd.ResultString;
-        public override string ResultClause => _nativeWnd.ResultClause;
-        public override string ResultRead => _nativeWnd.ResultReadString;
-        public override string ResultReadClause => _nativeWnd.ResultReadClause;
+        public override string Result { get { return _nativeWnd.ResultString; } }
+        public override string ResultClause { get { return _nativeWnd.ResultClause; } }
+        public override string ResultRead { get { return _nativeWnd.ResultReadString; } }
+        public override string ResultReadClause { get { return _nativeWnd.ResultReadClause; } }
 
         public override CompositionAttributes GetCompositionAttr(int charIndex)
         {

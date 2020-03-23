@@ -6,7 +6,7 @@
     <OutputPath>..\Artifacts\$(ProjectPlatform)</OutputPath>
     <RootNamespace>MonoGame.IMEHelper</RootNamespace>
     <AssemblyName>MonoGame.IMEHelper</AssemblyName>
-    <LangVersion>latest</LangVersion>
+    <LangVersion>5</LangVersion>
 
     <PackageId>MonoGame.IMEHelper.WindowsDX</PackageId>
     <Description>This is an netcoreapp3.1 package with IME implementation with Winforms in Windows.</Description>
