@@ -6,7 +6,7 @@ namespace MonoGame.IMEHelper
 {
     public abstract class IMEHandler
     {
-        public static IMEHandler _ImplInstance;
+        private static IMEHandler _ImplInstance;
         public static IMEHandler ImplInstance
         {
             get
