@@ -18,7 +18,6 @@ namespace MonoGame.IMEHelper.DesktopGL.Test
         DynamicSpriteFont font1;
 
         IMEHandler imeHandler;
-        KeyboardState lastState;
         Texture2D whitePixel;
         string inputContent = string.Empty;
 
@@ -109,15 +108,13 @@ namespace MonoGame.IMEHelper.DesktopGL.Test
 
             KeyboardState ks = Keyboard.GetState();
 
-            if (ks.IsKeyDown(Keys.F1) && lastState.IsKeyUp(Keys.F1))
+            if (ks.IsKeyDown(Keys.F1))
             {
                 if (imeHandler.Enabled)
                     imeHandler.StopTextComposition();
                 else
                     imeHandler.StartTextComposition();
             }
-
-            lastState = ks;
 
             base.Update(gameTime);
         }

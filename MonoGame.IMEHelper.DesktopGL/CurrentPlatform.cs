@@ -81,6 +81,22 @@ namespace MonoGame.IMEHelper
                 return os;
             }
         }
+
+        public static string Rid
+        {
+            get
+            {
+                if (CurrentPlatform.OS == OS.Windows && Environment.Is64BitProcess)
+                    return "win-x64";
+                else if (CurrentPlatform.OS == OS.Windows && !Environment.Is64BitProcess)
+                    return "win-x86";
+                else if (CurrentPlatform.OS == OS.Linux)
+                    return "linux-x64";
+                else if (CurrentPlatform.OS == OS.MacOSX)
+                    return "osx";
+                else
+                    return "unknown";
+            }
+        }
     }
 }
-

@@ -30,6 +30,7 @@ namespace MonoGame.IMEHelper
                 return;
 
             Sdl.StartTextInput();
+            Enabled = true;
         }
 
         public override void StopTextComposition()
@@ -38,6 +39,7 @@ namespace MonoGame.IMEHelper
                 return;
 
             Sdl.StopTextInput();
+            Enabled = false;
         }
 
         public override void SetTextInputRect(ref Rectangle rect)
