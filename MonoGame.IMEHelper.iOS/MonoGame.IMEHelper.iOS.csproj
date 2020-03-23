@@ -13,8 +13,7 @@
     <Reference Include="Xamarin.iOS" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="MonoGame.Framework.iOS">
-      <Version>3.7.1.189</Version>
+    <PackageReference Include="MonoGame.Framework.iOS" Version="3.7.1.189">
       <PrivateAssets>All</PrivateAssets>
     </PackageReference>
   </ItemGroup>

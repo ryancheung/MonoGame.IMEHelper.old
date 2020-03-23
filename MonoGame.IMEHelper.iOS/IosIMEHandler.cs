@@ -64,7 +64,7 @@ namespace MonoGame.IMEHelper
 
         private UIBackwardsTextField textField;
 
-        private int virtualKeyboardHeight;
+        private int _virtualKeyboardHeight;
 
         public IosIMEHandler(Game game, bool showDefaultIMEWindow = false) : base(game, showDefaultIMEWindow)
         {
@@ -97,12 +97,12 @@ namespace MonoGame.IMEHelper
 
             UIKeyboard.Notifications.ObserveWillShow((s, e) =>
             {
-                virtualKeyboardHeight = (int)e.FrameBegin.Height;
+                _virtualKeyboardHeight = (int)e.FrameBegin.Height;
             });
 
             UIKeyboard.Notifications.ObserveWillHide((s, e) =>
             {
-                virtualKeyboardHeight = 0;
+                _virtualKeyboardHeight = 0;
             });
         }
 
@@ -139,7 +139,7 @@ namespace MonoGame.IMEHelper
             Enabled = false;
         }
 
-        public override int VirtualKeyboardHeight => virtualKeyboardHeight;
+        public override int VirtualKeyboardHeight { get { return _virtualKeyboardHeight; } }
 
         const int KeyboardHideOffset = 80;
 
@@ -150,7 +150,7 @@ namespace MonoGame.IMEHelper
             {
                 if (TouchLocationState.Pressed == touchLocation.State)
                 {
-                    if (touchLocation.Position.Y < ((mainWindow.GetFrame().Y - virtualKeyboardHeight) - KeyboardHideOffset))
+                    if (touchLocation.Position.Y < ((mainWindow.GetFrame().Y - _virtualKeyboardHeight) - KeyboardHideOffset))
                         StopTextComposition();
                 }
             }

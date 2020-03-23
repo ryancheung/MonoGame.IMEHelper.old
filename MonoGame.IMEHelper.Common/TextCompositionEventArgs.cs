@@ -23,17 +23,17 @@ namespace MonoGame.IMEHelper
         /// <summary>
         /// The full string as it's composited by the IMM.
         /// </summary>
-        public string CompositedText { get; }
+        public string CompositedText { get; private set; }
 
         /// <summary>
         /// The position of the cursor inside the composited string.
         /// </summary>
-        public int CursorPosition { get; }
+        public int CursorPosition { get; private set; }
 
         /// <summary>
         /// The suggested alternative texts for the composition.
         /// </summary>
-        public CandidateList? CandidateList { get; }
+        public CandidateList? CandidateList { get; private set; }
 
     }
 }

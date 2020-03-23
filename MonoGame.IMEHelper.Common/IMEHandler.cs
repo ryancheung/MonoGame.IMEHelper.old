@@ -95,52 +95,52 @@ namespace MonoGame.IMEHelper
         /// <summary>
         /// Composition String
         /// </summary>
-        public virtual string Composition => string.Empty;
+        public virtual string Composition { get { return string.Empty; } }
 
         /// <summary>
         /// Composition Clause
         /// </summary>
-        public virtual string CompositionClause => string.Empty;
+        public virtual string CompositionClause { get { return string.Empty; } }
 
         /// <summary>
         /// Composition Reading String
         /// </summary>
-        public virtual string CompositionRead => string.Empty;
+        public virtual string CompositionRead { get { return string.Empty; } }
 
         /// <summary>
         /// Composition Reading Clause
         /// </summary>
-        public virtual string CompositionReadClause => string.Empty;
+        public virtual string CompositionReadClause { get { return string.Empty; } }
 
         /// <summary>
         /// Caret position of the composition
         /// </summary>
-        public virtual int CompositionCursorPos => 0;
+        public virtual int CompositionCursorPos { get { return 0; } }
 
         /// <summary>
         /// Result String
         /// </summary>
-        public virtual string Result => string.Empty;
+        public virtual string Result { get { return string.Empty; } }
 
         /// <summary>
         /// Result Clause
         /// </summary>
-        public virtual string ResultClause => string.Empty;
+        public virtual string ResultClause { get { return string.Empty; } }
 
         /// <summary>
         /// Result Reading String
         /// </summary>
-        public virtual string ResultRead => string.Empty;
+        public virtual string ResultRead { get { return string.Empty; } }
 
         /// <summary>
         /// Result Reading Clause
         /// </summary>
-        public virtual string ResultReadClause => string.Empty;
+        public virtual string ResultReadClause { get { return string.Empty; } }
 
         /// <summary>
         /// Position Y of virtual keyboard, for mobile platforms has virtual keyboard.
         /// </summary>
-        public virtual int VirtualKeyboardHeight => 0;
+        public virtual int VirtualKeyboardHeight { get { return 0; } }
 
         /// <summary>
         /// Get the composition attribute at character index.

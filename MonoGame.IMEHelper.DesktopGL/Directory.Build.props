@@ -6,7 +6,7 @@
     <OutputPath>..\Artifacts\$(ProjectPlatform)</OutputPath>
     <RootNamespace>MonoGame.IMEHelper</RootNamespace>
     <AssemblyName>MonoGame.IMEHelper</AssemblyName>
-    <LangVersion>latest</LangVersion>
+    <LangVersion>5</LangVersion>
 
     <PackageId>MonoGame.IMEHelper.DesktopGL</PackageId>
     <Description>This is a netstandard package with IME implementation of Windows, MacOS and Linux with SDL2.</Description>
